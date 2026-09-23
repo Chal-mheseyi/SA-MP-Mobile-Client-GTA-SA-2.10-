@@ -25,10 +25,10 @@ jobs:
         run: chmod +x gradlew
 
       - name: Build APK
-        run: ./gradlew assembleRelease
+        run: ./gradlew assembleVer_releaseRelease
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: samp-client-apk
-          path: app/build/outputs/apk/release/*.apk
+          path: app/build/outputs/apk/ver_release/release/*.apk
