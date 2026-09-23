@@ -95,26 +95,21 @@ void CSettings::LoadSettings(const char *szNickName, int iChatLines)
 		strcpy(tempNick, szNickName);
 	}
 
-if (!ini_table_read_from_file(config, buff))
-{
-        Log("No settings found, creating default...");
-        ini_table_create_entry(config, "client", "ip", "51.68.107.75");
-        ini_table_create_entry_as_int(config, "client", "port", 26021);
-        ini_table_write_to_file(config, buff);
-        ini_table_read_from_file(config, buff);
-}	Log("Loading settings..");
+        Log("Loading settings..");
 
-	char buff[0x7F];
-	sprintf(buff, "%sSAMP/settings.ini", g_pszStorage);
+        char buff[0x7F];
+        sprintf(buff, "%sSAMP/settings.ini", g_pszStorage);
 
-	ini_table_s *config = ini_table_create();
-	Log("Opening settings: %s", buff);
-	if (!ini_table_read_from_file(config, buff))
-	{
-		Log("Cannot load settings, exiting...");
-		CGame::exitGame();
-		return;
-	}
+        ini_table_s *config = ini_table_create();
+        Log("Opening settings: %s", buff);
+        if (!ini_table_read_from_file(config, buff))
+        {
+                Log("No settings found, creating default...");
+                ini_table_create_entry(config, "client", "ip", "51.68.107.75");
+                ini_table_create_entry_as_int(config, "client", "port", 26021);
+                ini_table_write_to_file(config, buff);
+                ini_table_read_from_file(config, buff);
+        }
 
 	snprintf(m_Settings.szNickName, sizeof(m_Settings.szNickName), "__android_%d%d", rand() % 1000, rand() % 1000);
 	memset(m_Settings.szPassword, 0, sizeof(m_Settings.szPassword));
