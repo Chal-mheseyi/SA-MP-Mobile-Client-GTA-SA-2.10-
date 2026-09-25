@@ -78,6 +78,7 @@ object ServersList {
             listener.monitoringDataLoadedSuccess()
         } catch (ex: Exception) {
             ex.printStackTrace()
+            listener.monitoringDataLoadedSuccess()
         }
     }
 }
