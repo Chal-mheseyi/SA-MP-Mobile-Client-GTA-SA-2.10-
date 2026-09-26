@@ -120,24 +120,26 @@ class SplashActivity : AppCompatActivity() {
     }
 
     private fun loadFilesList() {
-        val call = networkService.filesList
+    val call = networkService.filesList
 
-        call?.enqueue(object : Callback<GameFileInfoDto> {
-            override fun onResponse(call: Call<GameFileInfoDto>, response: Response<GameFileInfoDto>) {
-                if (response.isSuccessful) {
-                    response.body()?.let { CacheChecker.setFilesList(this@SplashActivity, it) }
-                }
-                filesListLoaded = true
-                startIfReady()
+    call?.enqueue(object : Callback<GameFileInfoDto> {
+        override fun onResponse(call: Call<GameFileInfoDto>, response: Response<GameFileInfoDto>) {
+            android.widget.Toast.makeText(this@SplashActivity, "Files response: code=${response.code()} successful=${response.isSuccessful}", android.widget.Toast.LENGTH_LONG).show()
+            if (response.isSuccessful) {
+                response.body()?.let { CacheChecker.setFilesList(this@SplashActivity, it) }
             }
+            filesListLoaded = true
+            startIfReady()
+        }
 
-            override fun onFailure(call: Call<GameFileInfoDto>, t: Throwable) {
-                Log.d("tag", "onFailure = " + t.message);
-                filesListLoaded = true
-                startIfReady()
-            }
-        })
-    }
+        override fun onFailure(call: Call<GameFileInfoDto>, t: Throwable) {
+            android.widget.Toast.makeText(this@SplashActivity, "Files load failed: ${t.message}", android.widget.Toast.LENGTH_LONG).show()
+            Log.d("tag", "onFailure = " + t.message);
+            filesListLoaded = true
+            startIfReady()
+        }
+    })
+}
 
     private fun checkPermissions() {
         val permissionsToRequest = mutableListOf<String>()
