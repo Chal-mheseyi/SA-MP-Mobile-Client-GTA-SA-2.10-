@@ -51,21 +51,21 @@ class Dice : NativeGui<CasinoDiceBinding>(CasinoDiceBinding::class) {
     fun update(tableID: Int, tableBet: Int, tableBank: Int, money: Int, player1name: String?, player1stat: Int, player2name: String?, player2stat: Int, player3name: String?, player3stat: Int, player4name: String?, player4stat: Int, player5name: String?, player5stat: Int, time: Int, crupName: String?, crupId: Int) {
         activity.runOnUiThread {
             if (time > 1) {
-                binding.timeText.text = String.format("До конца раунда: %d", time)
+                binding.timeText.text = String.format("Time left in round: %d", time)
                 binding.timeText.visibility = View.VISIBLE
             }
             else {
                 binding.timeText.visibility = View.GONE
             }
             if (crupId != Samp.INVALID_PLAYER_ID)
-                binding.dealerText.text = String.format("Крупье: %s[%d]", crupName, crupId)
+                binding.dealerText.text = String.format("Dealer: %s[%d]", crupName, crupId)
             else
-                binding.dealerText.text = "Крупье: --"
+                binding.dealerText.text = "Dealer: --"
 
-            binding.tableCaption.text = "Стол $tableID"
-            binding.betText.text = Samp.formatter.format(tableBet.toLong()) + " руб."
-            binding.bankText.text = Samp.formatter.format(tableBank.toLong()) + " руб."
-            binding.myBalanceText.text = Samp.formatter.format(money.toLong()) + " руб."
+            binding.tableCaption.text = "Table $tableID"
+            binding.betText.text = Samp.formatter.format(tableBet.toLong()) + " rub."
+            binding.bankText.text = Samp.formatter.format(tableBank.toLong()) + " rub."
+            binding.myBalanceText.text = Samp.formatter.format(money.toLong()) + " rub."
 
             binding.playerName1.text = player1name
             if (player1stat == 0) {

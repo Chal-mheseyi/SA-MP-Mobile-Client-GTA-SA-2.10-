@@ -102,7 +102,7 @@ class SettingsFragment : Fragment(), View.OnClickListener {
     }
 
     private fun performReinstallGameButtonAction() {
-        val confirmDialog = ConfirmDialog(activity, "Переустановить игру?")
+        val confirmDialog = ConfirmDialog(activity, "Reinstall the game?")
         confirmDialog.setOnDialogCloseListener { isConfirm: Boolean -> onConfirmReinstallFinished(isConfirm) }
         confirmDialog.createDialog()
     }
@@ -132,7 +132,7 @@ class SettingsFragment : Fragment(), View.OnClickListener {
 
     private fun doAfterCacheChecked(fileToReloadArray: MutableList<FileInfo>) {
         if (fileToReloadArray.isEmpty()) {
-            activityService?.showInfoMessage("Файлы в порядке!", this.activity)
+            activityService?.showInfoMessage("Files are OK!", this.activity)
         } else {
             validateCache(fileToReloadArray)
         }
@@ -145,7 +145,7 @@ class SettingsFragment : Fragment(), View.OnClickListener {
     }
 
     private fun performResetSettingsButtonAction() {
-        val confirmDialog = ConfirmDialog(activity, "Сбросить настройки игры?")
+        val confirmDialog = ConfirmDialog(activity, "Reset game settings?")
         confirmDialog.setOnDialogCloseListener { isConfirm: Boolean -> onConfirmResetSettingsFinished(isConfirm) }
         confirmDialog.createDialog()
     }
@@ -155,15 +155,15 @@ class SettingsFragment : Fragment(), View.OnClickListener {
             return
         }
         if (!activityService!!.isGameFileInstall(activity, Config.SETTINGS_FILE_PATH)) {
-            activityService!!.showInfoMessage("Сначала установите игру", activity)
+            activityService!!.showInfoMessage("Install the game first", activity)
             return
         }
         val settingsFile = File(requireActivity().getExternalFilesDir(null).toString() + Config.SETTINGS_FILE_PATH)
         if (settingsFile.exists()) {
             settingsFile.delete()
-            activityService!!.showInfoMessage("Вы успешно сбросили настройки!", activity)
+            activityService!!.showInfoMessage("You successfully reset the settings!", activity)
         } else {
-            activityService!!.showInfoMessage("Настройки по умолчанию уже установлены", activity)
+            activityService!!.showInfoMessage("Default settings are already set", activity)
         }
     }
 

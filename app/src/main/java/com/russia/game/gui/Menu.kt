@@ -38,7 +38,7 @@ class Menu : NativeGui<MenuActionDialogBinding>(MenuActionDialogBinding::class) 
 
         if (!z) {
             setMenu()
-            binding.caption.text = "Действия"
+            binding.caption.text = "Actions"
             setDataInRecyclerView({ dataDialogMenu: DataDialogMenu, view: View? ->
                 view?.startAnimation(Samp.clickAnim)
                 index = dataDialogMenu.id
@@ -52,18 +52,18 @@ class Menu : NativeGui<MenuActionDialogBinding>(MenuActionDialogBinding::class) 
 
     private fun setMenu() {
         dataDialogMenuArrayList.clear()
-        dataDialogMenuArrayList.add(DataDialogMenu(1, R.drawable.menu_icon_gps, "Навигатор"))
-        dataDialogMenuArrayList.add(DataDialogMenu(2, R.drawable.menu_icon_mm, "Меню"))
-        // this.dataDialogMenuArrayList.add(new DataDialogMenu(3, R.drawable.br_menu_chat, "Общение"));
-        dataDialogMenuArrayList.add(DataDialogMenu(3, R.drawable.menu_icon_inv, "Инвентарь"))
-        dataDialogMenuArrayList.add(DataDialogMenu(4, R.drawable.menu_icon_anim, "Анимации"))
-        dataDialogMenuArrayList.add(DataDialogMenu(5, R.drawable.br_menu_ruble, "Донат"))
-        dataDialogMenuArrayList.add(DataDialogMenu(6, R.drawable.menu_icon_car, "Автомобили"))
-        dataDialogMenuArrayList.add(DataDialogMenu(7, R.drawable.menu_report_icon, "Жалоба"))
-        dataDialogMenuArrayList.add(DataDialogMenu(8, R.drawable.menu_promocode_icon, "Промокод"))
-        dataDialogMenuArrayList.add(DataDialogMenu(9, R.drawable.players_icon, "Игроки"))
-        dataDialogMenuArrayList.add(DataDialogMenu(10, R.drawable.menu_icon_family, "Семья"))
-        dataDialogMenuArrayList.add(DataDialogMenu(11, R.drawable.menu_icon_achivments, "Достижения"))
+        dataDialogMenuArrayList.add(DataDialogMenu(1, R.drawable.menu_icon_gps, "Navigator"))
+        dataDialogMenuArrayList.add(DataDialogMenu(2, R.drawable.menu_icon_mm, "Menu"))
+        // this.dataDialogMenuArrayList.add(new DataDialogMenu(3, R.drawable.br_menu_chat, "Communication"));
+        dataDialogMenuArrayList.add(DataDialogMenu(3, R.drawable.menu_icon_inv, "Inventory"))
+        dataDialogMenuArrayList.add(DataDialogMenu(4, R.drawable.menu_icon_anim, "Animations"))
+        dataDialogMenuArrayList.add(DataDialogMenu(5, R.drawable.br_menu_ruble, "Donation"))
+        dataDialogMenuArrayList.add(DataDialogMenu(6, R.drawable.menu_icon_car, "Vehicles"))
+        dataDialogMenuArrayList.add(DataDialogMenu(7, R.drawable.menu_report_icon, "Complaint"))
+        dataDialogMenuArrayList.add(DataDialogMenu(8, R.drawable.menu_promocode_icon, "Promo Code"))
+        dataDialogMenuArrayList.add(DataDialogMenu(9, R.drawable.players_icon, "Players"))
+        dataDialogMenuArrayList.add(DataDialogMenu(10, R.drawable.menu_icon_family, "Family"))
+        dataDialogMenuArrayList.add(DataDialogMenu(11, R.drawable.menu_icon_achivments, "Achievements"))
         dataDialogMenuArrayList.add(DataDialogMenu(12, R.drawable.menu_icon_battlepass, "LIVE PASS"))
     }
 

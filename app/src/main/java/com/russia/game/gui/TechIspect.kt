@@ -57,7 +57,7 @@ class TechIspect : NativeGui<TechnicalInspectionBinding>(TechnicalInspectionBind
             binding.nozzlesProgress.progress = (100 - nozzles).toFloat()
 
             binding.priceText.text =
-                String.format("Госпошлина %s рублей", Samp.formatter.format(price.toLong()))
+                String.format("State fee %s rubles", Samp.formatter.format(price.toLong()))
         }
     }
 

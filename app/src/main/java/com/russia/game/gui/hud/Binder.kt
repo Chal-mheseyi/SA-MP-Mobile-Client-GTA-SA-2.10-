@@ -50,7 +50,7 @@ class Binder : NativeGui<BinderBinding>(BinderBinding::class), BinderAdapterList
             val input = binding.addInput
 
             if (input.text.length > 400) {
-                Toast.makeText(activity, "Не больше 400 символов!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, "No more than 400 characters!", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
             var count = 0
@@ -60,7 +60,7 @@ class Binder : NativeGui<BinderBinding>(BinderBinding::class), BinderAdapterList
                 }
             }
             if (count > 4) {
-                Toast.makeText(activity, "Не более 4-х сообщений!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, "No more than 4 messages!", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
             adapter.addItem(BinderItem(input.text.toString(), -0xff6978))
@@ -104,7 +104,7 @@ class Binder : NativeGui<BinderBinding>(BinderBinding::class), BinderAdapterList
             val item = list.removeAt(fromPosition)
             list.add(toPosition, item)
             notifyItemMoved(fromPosition, toPosition)
-            Toast.makeText(activity, "Перемещено", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, "Moved", Toast.LENGTH_SHORT).show()
             saveData()
         }
 
@@ -140,7 +140,7 @@ class Binder : NativeGui<BinderBinding>(BinderBinding::class), BinderAdapterList
         override fun onItemSwipedToStart(viewHolder: RecyclerView.ViewHolder, i: Int) {
             list.removeAt(i)
             notifyItemRemoved(i)
-            Toast.makeText(activity, "Удалено", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, "Deleted", Toast.LENGTH_SHORT).show()
             saveData()
         }
 

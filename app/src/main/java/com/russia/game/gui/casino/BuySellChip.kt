@@ -81,20 +81,20 @@ class BuySellChip(isSell: Boolean, balance: Int) {
             }
 
             if (isSell) {
-                casino_chip_action_caption.text = "Продать фишки"
-                casino_chip_balance_text.text = String.format("%d фишек", balance)
-                casino_chip_currency_text.text = "1 = 950 руб."
+                casino_chip_action_caption.text = "Sell Chips"
+                casino_chip_balance_text.text = String.format("%d chips", balance)
+                casino_chip_currency_text.text = "1 = 950 rub."
                 casino_chip_bg_2.background =
                     AppCompatResources.getDrawable(activity, R.drawable.casino_chip_bg_2_sell)
-                casino_chip_buy_button.text = "продать"
+                casino_chip_buy_button.text = "sell"
                 casino_chip_buy_button.setTextColor(Color.parseColor("#A01618"))
             } else {
-                casino_chip_action_caption.text = "Купить фишки"
-                casino_chip_balance_text.text = String.format("%d руб.", balance)
-                casino_chip_currency_text.text = "1 = 1.000 руб."
+                casino_chip_action_caption.text = "Buy Chips"
+                casino_chip_balance_text.text = String.format("%d rub.", balance)
+                casino_chip_currency_text.text = "1 = 1,000 rub."
                 casino_chip_bg_2.background =
                     AppCompatResources.getDrawable(activity, R.drawable.casino_chip_bg_2_buy)
-                casino_chip_buy_button.text = "купить"
+                casino_chip_buy_button.text = "buy"
                 casino_chip_buy_button.setTextColor(Color.parseColor("#017088"))
 
             }
@@ -125,13 +125,13 @@ class BuySellChip(isSell: Boolean, balance: Int) {
         activity.runOnUiThread {
             if (isSell) {
                 casino_chip_get_count.text = String.format(
-                    "К получению: %s руб.", Samp.formatter.format(
+                    "To receive: %s rub.", Samp.formatter.format(
                         chipGetCount * 950L
                     )
                 )
             } else {
                 casino_chip_get_count.text = String.format(
-                    "К оплате: %s руб.", Samp.formatter.format(
+                    "To pay: %s rub.", Samp.formatter.format(
                         chipGetCount * 1000L
                     )
                 )

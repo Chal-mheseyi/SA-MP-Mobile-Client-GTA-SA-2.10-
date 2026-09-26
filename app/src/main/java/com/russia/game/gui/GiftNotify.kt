@@ -25,7 +25,7 @@ class GiftNotify(namePrize: String, rare: Int = 0) : NativeGui<GiftNotifyBinding
 
             if(rare != Rare.NONE) {
                 binding.giftNotifyRareText.setTextColor(Rare.getColorAsStateList(rare))
-                binding.giftNotifyRareText.text = String.format("Редкость: %s", Rare.getName(rare))
+                binding.giftNotifyRareText.text = String.format("Rarity: %s", Rare.getName(rare))
                 binding.giftNotifyRareText.setShadowLayer(10f, 0f, 0f, Rare.getColorAsInt(rare))
                 binding.giftNotifyRareText.visibility = View.VISIBLE
             } else {

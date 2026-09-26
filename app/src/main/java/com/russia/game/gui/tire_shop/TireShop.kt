@@ -29,13 +29,13 @@ class TireShop : NativeGui<StylingCenterBinding>(StylingCenterBinding::class), C
     private val TYPE_RAZVAL_BACK = 12
 
     private val items = arrayListOf(
-        TuningItem("Высота подвески", R.drawable.suspension_icon, TYPE_SUSPENSION),
-        TuningItem("Проставки", R.drawable.wheel_offset_icon, TYPE_WHEEL_OFFSET),
-        TuningItem("Сход-развал (перед.)", R.drawable.razval_icon, TYPE_RAZVAL_FRONT),
-        TuningItem("Сход-развал (зад.)", R.drawable.razval_icon, TYPE_RAZVAL_BACK),
-        TuningItem("Ширина шин", R.drawable.tire_width_icon, TYPE_TIRE_WIDTH),
-        TuningItem("Радиус диска", R.drawable.disk_rad_icon, TYPE_DISK_RAD),
-        TuningItem("Смена дисков", R.drawable.disk_group, TYPE_DISK),
+        TuningItem("Suspension Height", R.drawable.suspension_icon, TYPE_SUSPENSION),
+        TuningItem("Spacers", R.drawable.wheel_offset_icon, TYPE_WHEEL_OFFSET),
+        TuningItem("Wheel Alignment (front)", R.drawable.razval_icon, TYPE_RAZVAL_FRONT),
+        TuningItem("Wheel Alignment (rear)", R.drawable.razval_icon, TYPE_RAZVAL_BACK),
+        TuningItem("Tire Width", R.drawable.tire_width_icon, TYPE_TIRE_WIDTH),
+        TuningItem("Rim Radius", R.drawable.disk_rad_icon, TYPE_DISK_RAD),
+        TuningItem("Change Rims", R.drawable.disk_group, TYPE_DISK),
     )
     private val adapter = TuningAdapter(items, this)
 
@@ -90,8 +90,8 @@ class TireShop : NativeGui<StylingCenterBinding>(StylingCenterBinding::class), C
 
     fun update(to_pay: Int, balance: Int) {
         activity.runOnUiThread {
-            binding.balanceText.text = String.format("%s руб.", Samp.formatter.format(balance))
-            binding.priceText.text = String.format("%s руб.", Samp.formatter.format(to_pay))
+            binding.balanceText.text = String.format("%s rub.", Samp.formatter.format(balance))
+            binding.priceText.text = String.format("%s rub.", Samp.formatter.format(to_pay))
         }
     }
 
@@ -122,24 +122,24 @@ class TireShop : NativeGui<StylingCenterBinding>(StylingCenterBinding::class), C
         when(pos) {
             TYPE_DISK -> {
                 val diskList = listOf(
-                    TuningSelectMenuItem("Стоковые", 0, 0),
-                    TuningSelectMenuItem("Диски 1", 0, 1025),
-                    TuningSelectMenuItem("Диски 2", 0, 1073),
-                    TuningSelectMenuItem("Диски 3", 0, 1074),
-                    TuningSelectMenuItem("Диски 4", 0, 1075),
-                    TuningSelectMenuItem("Диски 5", 0, 1076),
-                    TuningSelectMenuItem("Диски 6", 0, 1077),
-                    TuningSelectMenuItem("Диски 7", 0, 1078),
-                    TuningSelectMenuItem("Диски 8", 0, 1079),
-                    TuningSelectMenuItem("Диски 9", 0, 1080),
-                    TuningSelectMenuItem("Диски 10", 0, 1081),
-                    TuningSelectMenuItem("Диски 11", 0, 1082),
-                    TuningSelectMenuItem("Диски 12", 0, 1083),
-                    TuningSelectMenuItem("Диски 13", 0, 1084),
-                    TuningSelectMenuItem("Диски 14", 0, 1085),
-                    TuningSelectMenuItem("Диски 15", 0, 1096),
-                    TuningSelectMenuItem("Диски 16", 0, 1097),
-                    TuningSelectMenuItem("Диски 17", 0, 1098)
+                    TuningSelectMenuItem("Stock", 0, 0),
+                    TuningSelectMenuItem("Rims 1", 0, 1025),
+                    TuningSelectMenuItem("Rims 2", 0, 1073),
+                    TuningSelectMenuItem("Rims 3", 0, 1074),
+                    TuningSelectMenuItem("Rims 4", 0, 1075),
+                    TuningSelectMenuItem("Rims 5", 0, 1076),
+                    TuningSelectMenuItem("Rims 6", 0, 1077),
+                    TuningSelectMenuItem("Rims 7", 0, 1078),
+                    TuningSelectMenuItem("Rims 8", 0, 1079),
+                    TuningSelectMenuItem("Rims 9", 0, 1080),
+                    TuningSelectMenuItem("Rims 10", 0, 1081),
+                    TuningSelectMenuItem("Rims 11", 0, 1082),
+                    TuningSelectMenuItem("Rims 12", 0, 1083),
+                    TuningSelectMenuItem("Rims 13", 0, 1084),
+                    TuningSelectMenuItem("Rims 14", 0, 1085),
+                    TuningSelectMenuItem("Rims 15", 0, 1096),
+                    TuningSelectMenuItem("Rims 16", 0, 1097),
+                    TuningSelectMenuItem("Rims 17", 0, 1098)
 
                 )
                 showSelectMenu(pos, diskList)
@@ -147,7 +147,7 @@ class TireShop : NativeGui<StylingCenterBinding>(StylingCenterBinding::class), C
             }
             TYPE_SUSPENSION -> {
                 showCustomSeekBar(
-                    "Высота подвески",
+                    "Suspension Height",
                     TYPE_SUSPENSION,
                     -0.35f,
                     0.15f,
@@ -158,7 +158,7 @@ class TireShop : NativeGui<StylingCenterBinding>(StylingCenterBinding::class), C
 
             TYPE_RAZVAL_FRONT -> {
                 showCustomSeekBar(
-                    "Развал-схождение (перед)",
+                    "Wheel Alignment (front)",
                     TYPE_RAZVAL_FRONT,
                     -20.0f,
                     20.0f,
@@ -168,7 +168,7 @@ class TireShop : NativeGui<StylingCenterBinding>(StylingCenterBinding::class), C
 
             TYPE_RAZVAL_BACK -> {
                 showCustomSeekBar(
-                    "Развал-схождение (зад)",
+                    "Wheel Alignment (rear)",
                     TYPE_RAZVAL_BACK,
                     -20.0f,
                     20.0f,
@@ -178,7 +178,7 @@ class TireShop : NativeGui<StylingCenterBinding>(StylingCenterBinding::class), C
 
             TYPE_TIRE_WIDTH -> {
                 showCustomSeekBar(
-                    "Ширина резины",
+                    "Tire Width",
                     TYPE_TIRE_WIDTH,
                     0.0f,
                     200.0f,
@@ -188,7 +188,7 @@ class TireShop : NativeGui<StylingCenterBinding>(StylingCenterBinding::class), C
 
             TYPE_DISK_RAD -> {
                 showCustomSeekBar(
-                    "Радиус диска",
+                    "Rim Radius",
                     TYPE_DISK_RAD,
                     0.50f,
                     1.4f,
@@ -198,7 +198,7 @@ class TireShop : NativeGui<StylingCenterBinding>(StylingCenterBinding::class), C
 
             TYPE_WHEEL_OFFSET -> {
                 showCustomSeekBar(
-                    "Проставки",
+                    "Spacers",
                     TYPE_WHEEL_OFFSET,
                     -20.0f,
                     10.0f,

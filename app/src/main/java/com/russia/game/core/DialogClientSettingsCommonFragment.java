@@ -137,7 +137,7 @@ public class DialogClientSettingsCommonFragment extends Fragment implements ISav
             if(Samp.getMaxFps() < curFps){
                 curFps = (int) Samp.getMaxFps();
 
-                Toast toast = Toast.makeText(mContext, String.format("Ваш экран не поддерживает значение выше %.0f", Samp.getMaxFps()),Toast.LENGTH_SHORT);
+                Toast toast = Toast.makeText(mContext, String.format("Your screen doesn't support a value higher than %.0f", Samp.getMaxFps()),Toast.LENGTH_SHORT);
                 toast.show();
             }
             fps_text.setText(String.format("%d", curFps));

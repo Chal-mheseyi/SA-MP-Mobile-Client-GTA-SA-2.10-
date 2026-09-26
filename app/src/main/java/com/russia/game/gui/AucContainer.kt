@@ -36,7 +36,7 @@ class AucContainer : NativeGui<AucContainerBinding>(AucContainerBinding::class){
 
     private fun show(id: Int, type: Int, price: Int) {
         activity.runOnUiThread {
-            binding.priceText.text = String.format("%s руб.", Samp.formatter.format(price))
+            binding.priceText.text = String.format("%s rub.", Samp.formatter.format(price))
             if (type == 0) {
                 binding.caption.text = Vehicles.getName(id)
                 EntitySnaps.loadEntitySnapToImageView(Vehicles.getSnap(id), binding.image)

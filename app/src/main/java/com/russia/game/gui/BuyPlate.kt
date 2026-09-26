@@ -103,7 +103,7 @@ class BuyPlate : NativeGui<BuyPlateBinding>(BuyPlateBinding::class) {
         activity.runOnUiThread {
             ItemHelper.loadSpriteToImageView(sprite, binding.plateImage)
 
-            binding.randomPriceText.text = String.format("Случайный вариант \nза %s руб.", Samp.formatter.format(randomPrice))
+            binding.randomPriceText.text = String.format("Random option\nfor %s rub.", Samp.formatter.format(randomPrice))
             binding.buyPrice.text = finalPrice
         }
     }
@@ -120,26 +120,26 @@ class BuyPlate : NativeGui<BuyPlateBinding>(BuyPlateBinding::class) {
 
         when(id) {
             PlateType.RU -> {
-                binding.format.text = Html.fromHtml("<b>Формат номера:</b><br>А123ВС 45")
+                binding.format.text = Html.fromHtml("<b>Plate format:</b><br>A123BC 45")
 
                 regex = Regex("^[ABEKMHOPCTYX]{1}\\d{3}[ABEKMHOPCTYX]{2} \\d{2,3}$")
                 binding.typeRu.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#61000000"))
                 nativeSendClick(ClickType.SELECT_RU.ordinal)
             }
             PlateType.UA -> {
-                binding.format.text = Html.fromHtml("<b>Формат номера:</b><br>АВ 1234 СТ")
+                binding.format.text = Html.fromHtml("<b>Plate format:</b><br>AB 1234 CT")
                 regex = Regex("^[ABEKMHOPCTYX]{2}\\s\\d{4} [ABEKMHOPCTYX]{2}$")
                 binding.typeUa.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#61000000"))
                 nativeSendClick(ClickType.SELECT_UA.ordinal)
             }
             PlateType.BY -> {
-                binding.format.text = Html.fromHtml("<b>Формат номера:</b><br>1234 АВ-5")
+                binding.format.text = Html.fromHtml("<b>Plate format:</b><br>1234 AB-5")
                 regex = Regex("^\\d{4}\\s[ABEKMHOPCTYX]{2}-\\d$")
                 binding.typeBy.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#61000000"))
                 nativeSendClick(ClickType.SELECT_BY.ordinal)
             }
             PlateType.KZ -> {
-                binding.format.text = Html.fromHtml("<b>Формат номера:</b><br>123АВС 12")
+                binding.format.text = Html.fromHtml("<b>Plate format:</b><br>123ABC 12")
                 regex = Regex("^\\d{3}[ABEKMHOPCTYX]{2} \\d{2,3}$")
                 binding.typeKz.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#61000000"))
                 nativeSendClick(ClickType.SELECT_KZ.ordinal)

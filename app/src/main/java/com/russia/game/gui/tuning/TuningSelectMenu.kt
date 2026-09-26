@@ -61,7 +61,7 @@ class TuningSelectMenu(val startValue: Int, val list: List<TuningSelectMenuItem>
     }
 
     private fun updateInfo() {
-        binding.priceText.text = String.format("%s руб.", Samp.formatter.format( list[curSelectedIndex].price ))
+        binding.priceText.text = String.format("%s rub.", Samp.formatter.format( list[curSelectedIndex].price ))
         binding.caption.text = list[curSelectedIndex].caption
     }
 

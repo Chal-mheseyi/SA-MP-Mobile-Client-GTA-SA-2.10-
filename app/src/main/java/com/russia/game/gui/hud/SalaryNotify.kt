@@ -32,13 +32,13 @@ class SalaryNotify {
         while (current_visual_salary < current_real_salary && !Thread.currentThread().isInterrupted) {
             current_visual_salary++
             activity.runOnUiThread {
-                salary_job_salary_text.text = String.format("Заработано: %s рублей", Samp.formatter.format(current_visual_salary.toLong()))
+                salary_job_salary_text.text = String.format("Earned: %s rubles", Samp.formatter.format(current_visual_salary.toLong()))
             }
             try {
                 Thread.sleep(5)
             } catch (e: InterruptedException) {
                 activity.runOnUiThread {
-                    salary_job_salary_text.text = String.format("Заработано: %s рублей", Samp.formatter.format(current_real_salary.toLong()))
+                    salary_job_salary_text.text = String.format("Earned: %s rubles", Samp.formatter.format(current_real_salary.toLong()))
                 }
                 break
             }
@@ -54,7 +54,7 @@ class SalaryNotify {
         current_real_salary = salary
         activity.runOnUiThread {
             salary_job_exp_text.text = String.format("%.2f / 100", exp)
-            salary_job_lvl_text.text = String.format("Ваш уровень работника: %d", lvl)
+            salary_job_lvl_text.text = String.format("Your worker level: %d", lvl)
             if (old_salary_exp > salary) {
                 salary_job_progress.progress = 0F
             }
@@ -66,7 +66,7 @@ class SalaryNotify {
         }
         if (salary == 0) {
             current_visual_salary = 0
-            activity.runOnUiThread { salary_job_salary_text.text = "Заработано: 0 рублей" }
+            activity.runOnUiThread { salary_job_salary_text.text = "Earned: 0 rubles" }
         } else {
             thread_update_salary = Thread(updateSalaryRunnable)
             thread_update_salary!!.start()

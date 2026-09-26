@@ -100,29 +100,29 @@ class AutoShop {
         activity.runOnUiThread {
             when (gear) {
                 1 -> {
-                    autoshop_gear_value.text = "Задний"
+                    autoshop_gear_value.text = "Rear"
                 }
 
                 2 -> {
-                    autoshop_gear_value.text = "Передний"
+                    autoshop_gear_value.text = "Front"
                 }
 
                 3 -> {
-                    autoshop_gear_value.text = "Полный"
+                    autoshop_gear_value.text = "Full"
                 }
 
                 4 -> {
-                    autoshop_gear_value.text = "Цепной"
+                    autoshop_gear_value.text = "Chained"
                 }
 
                 else -> {
-                    autoshop_gear_value.text = "Не указан"
+                    autoshop_gear_value.text = "Not specified"
                 }
             }
-            autoshop_pricevalue.text = Samp.formatter.format(price.toLong()) + " руб."
+            autoshop_pricevalue.text = Samp.formatter.format(price.toLong()) + " rub."
             autoshop_available_value.text = String.format("%d", count)
-            autoshop_acceleration_value.text = String.format("%.1f", acceleration) + " с."
-            autoshop_maxspeed_value.text = String.format("%.0f", maxspeed) + " км/ч"
+            autoshop_acceleration_value.text = String.format("%.1f", acceleration) + " sec."
+            autoshop_maxspeed_value.text = String.format("%.0f", maxspeed) + " km/h"
             autoshop_modelname.text = name
         }
     }

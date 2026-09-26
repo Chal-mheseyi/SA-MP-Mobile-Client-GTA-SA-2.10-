@@ -176,12 +176,12 @@ class MainActivity : AppCompatActivity() {
         val nickname = NativeStorage.getClientProperty("name", this)
         val selectedServer = NativeStorage.getClientProperty("server", this)
         if (StringUtils.isBlank(nickname)) {
-            ActivityServiceImpl.showErrorMessage("Укажите ник!", this)
+            ActivityServiceImpl.showErrorMessage("Specify a nickname!", this)
             onClickSettings()
             return
         }
         if (StringUtils.isBlank(selectedServer)) {
-            ActivityServiceImpl.showErrorMessage("Выберите сервер", this)
+            ActivityServiceImpl.showErrorMessage("Choose a server", this)
             onClickMonitoring()
             return
         }

@@ -39,13 +39,13 @@ class Authorization : NativeGui<AuthorizationBinding>(AuthorizationBinding::clas
             binding.authBack.setOnClickListener {
                 Utils.HideLayout(binding.authRight2, false)
                 Utils.ShowLayout(binding.authRight1, false)
-                binding.authInfoTitle.text = "Выберите способ авторизации!"
-                binding.authInfo.text = "Информация: если этот аккаунт является не вашим, то выйдите из игры и смените игровое имя на новое!"
+                binding.authInfoTitle.text = "Choose a login method!"
+                binding.authInfo.text = "Notice: if this account isn't yours, log out of the game and change your in-game name!"
             }
             binding.authButt.setOnClickListener {
                 Utils.HideLayout(binding.authRight1, false)
                 Utils.ShowLayout(binding.authRight2, false)
-                binding.authInfoTitle.text = "Введите пароль, чтобы войти в игру."
+                binding.authInfoTitle.text = "Enter password to log into the game."
             }
             binding.authPassword.addTextChangedListener(object : TextWatcher {
                 override fun afterTextChanged(s: Editable) {}

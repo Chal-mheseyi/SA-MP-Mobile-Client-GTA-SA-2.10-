@@ -51,7 +51,7 @@ class GunShop {
             gunshop_golfclub.setOnClickListener { view: View ->
                 view.startAnimation(Samp.clickAnim)
                 weaponselectid = 1
-                gunshop_weapontext.text = "ГОЛЬФ КЛЮШКА"
+                gunshop_weapontext.text = "GOLF CLUB"
                 gunshop_weaponimage.setImageResource(R.drawable.weapon_2)
             }
             gunshop_mp5.setOnClickListener { view: View ->
@@ -81,7 +81,7 @@ class GunShop {
             gunshop_smoke.setOnClickListener { view: View ->
                 view.startAnimation(Samp.clickAnim)
                 weaponselectid = 6
-                gunshop_weapontext.text = "ДЫМОВАЯ ШАШКА"
+                gunshop_weapontext.text = "SMOKE GRENADE"
                 gunshop_weaponimage.setImageResource(R.drawable.weapon_17)
             }
             gunshop_ak47.setOnClickListener { view: View ->
@@ -93,7 +93,7 @@ class GunShop {
             gunshop_bat.setOnClickListener { view: View ->
                 view.startAnimation(Samp.clickAnim)
                 weaponselectid = 8
-                gunshop_weapontext.text = "БИТА"
+                gunshop_weapontext.text = "BAT"
                 gunshop_weaponimage.setImageResource(R.drawable.weapon_5)
             }
             gunshop_shotgun.setOnClickListener { view: View ->
@@ -105,24 +105,24 @@ class GunShop {
             gunshop_armor.setOnClickListener { view: View ->
                 view.startAnimation(Samp.clickAnim)
                 weaponselectid = 10
-                gunshop_weapontext.text = "БРОНЕЖИЛЕТ"
+                gunshop_weapontext.text = "BODY ARMOR"
                 gunshop_weaponimage.setImageResource(R.drawable.gunshop_armor)
             }
             gunshop_katana.setOnClickListener { view: View ->
                 view.startAnimation(Samp.clickAnim)
                 weaponselectid = 11
-                gunshop_weapontext.text = "КАТАНА"
+                gunshop_weapontext.text = "KATANA"
                 gunshop_weaponimage.setImageResource(R.drawable.weapon_8)
             }
             gunshop_knucles.setOnClickListener { view: View ->
                 view.startAnimation(Samp.clickAnim)
                 weaponselectid = 12
-                gunshop_weapontext.text = "КАСТЕТ"
+                gunshop_weapontext.text = "BRASS KNUCKLES"
                 gunshop_weaponimage.setImageResource(R.drawable.weapon_1)
             }
 
             weaponselectid = 12
-            gunshop_weapontext.text = "КАСТЕТ"
+            gunshop_weapontext.text = "BRASS KNUCKLES"
             gunshop_weaponimage.setImageResource(R.drawable.weapon_1)
 
         }

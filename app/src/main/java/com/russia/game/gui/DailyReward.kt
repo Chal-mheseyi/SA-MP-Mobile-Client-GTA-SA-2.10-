@@ -69,13 +69,13 @@ class DailyReward : NativeGui<DailyrewardBinding>(DailyrewardBinding::class) {
                             ColorStateList.valueOf(Color.parseColor("#fbc02d"))
                         label.backgroundTintList =
                             ColorStateList.valueOf(Color.parseColor("#e57373"))
-                        labelText.text = "Недоступно"
+                        labelText.text = "Unavailable"
                     } else if (second == 0) {
                         parent.backgroundTintList =
                             ColorStateList.valueOf(Color.parseColor("#fbc02d"))
                         label.backgroundTintList =
                             ColorStateList.valueOf(Color.parseColor("#66bb6a"))
-                        labelText.text = "Забрать"
+                        labelText.text = "Collect"
                     } else {
                         parent.backgroundTintList =
                             ColorStateList.valueOf(Color.parseColor("#fbc02d"))
@@ -88,12 +88,12 @@ class DailyReward : NativeGui<DailyrewardBinding>(DailyrewardBinding::class) {
                     parent.alpha = 0.4f
                     parent.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#66bb6a"))
                     label.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#66bb6a"))
-                    labelText.text = "Получено"
+                    labelText.text = "Received"
                 } else {
                     parent.alpha = 1.0f
                     parent.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#9e9e9e"))
                     label.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#9e9e9e"))
-                    labelText.text = "Недоступно"
+                    labelText.text = "Unavailable"
                 }
             }
         }

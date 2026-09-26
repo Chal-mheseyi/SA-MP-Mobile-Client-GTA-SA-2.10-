@@ -6,17 +6,17 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @RequiredArgsConstructor
 public enum InfoMessage {
-    CONNECTION_TO_LAST_SERVER("Подключение к последнему выбранному серверу!"),
-    CONNECTION_TO_SELECT_SERVER("Подключение к серверу: %s!"),
-    SERVER_SELECTED("Сервер выбран! Для начала игры нажмите жёлтую кнопку"),
-    INSTALL_GAME_FIRST("Сначала установите игру"),
-    GAME_FILES_VALID("Содержимое файлов валидно!"),
-    SETTINGS_ALREADY_DEFAULT("Настройки по умолчанию уже установлены"),
-    DOWNLOAD_SUCCESS_INPUT_YOUR_NICKNAME("Игра успешно установлена, введите свой никнейм"),
-    DOWNLOAD_SUCCESS_SELECT_SERVER("Игра успешно установлена, выберите сервер"),
-    REINSTALL_GAME_QUESTION("Переустановить игру?"),
-    RESET_SETTINGS_QUESTION("Сбросить настройки игры?"),
-    APPROVE_INSTALL("Подтвердите установку");
+    CONNECTION_TO_LAST_SERVER("Connecting to the last selected server!"),
+    CONNECTION_TO_SELECT_SERVER("Connecting to server: %s!"),
+    SERVER_SELECTED("Server selected! Press the yellow button to start the game"),
+    INSTALL_GAME_FIRST("Install the game first"),
+    GAME_FILES_VALID("File contents are valid!"),
+    SETTINGS_ALREADY_DEFAULT("Default settings are already set"),
+    DOWNLOAD_SUCCESS_INPUT_YOUR_NICKNAME("Game successfully installed, enter your nickname"),
+    DOWNLOAD_SUCCESS_SELECT_SERVER("Game successfully installed, choose a server"),
+    REINSTALL_GAME_QUESTION("Reinstall the game?"),
+    RESET_SETTINGS_QUESTION("Reset game settings?"),
+    APPROVE_INSTALL("Confirm installation");
 
     private final String text;
 

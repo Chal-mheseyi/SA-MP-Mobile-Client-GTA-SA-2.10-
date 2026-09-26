@@ -27,21 +27,21 @@ object Rare {
     }
     fun getName(rare: Int): String {
         if(rare == UNCOMMON)
-            return "Обычный"
+            return "Common"
 
         if(rare == COMMON)
-            return "Необычный"
+            return "Uncommon"
 
         if(rare == IMMORTAL)
-            return "Редкий"
+            return "Rare"
 
         if(rare == MYTHICAL)
-            return "Мифический"
+            return "Mythical"
 
         if(rare == LEGENDARY)
-            return "Легендарный"
+            return "Legendary"
 
-        return "Неизвестно"
+        return "Unknown"
     }
 
     fun getColorAsStateList(rare: Int): ColorStateList {

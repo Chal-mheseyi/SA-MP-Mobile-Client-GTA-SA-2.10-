@@ -147,8 +147,8 @@ class Notification {
                     br_not_text2.visibility = View.GONE
                     br_not_text.visibility = View.GONE
                     br_title_text_title.text = text
-                    br_title_text_text.text = "Нажмите, чтобы войти"
-                    br_not_firstbutton.text = "Войти"
+                    br_title_text_text.text = "Tap to log in"
+                    br_not_firstbutton.text = "Log In"
                 }
 
                 6 -> {
@@ -163,7 +163,7 @@ class Notification {
                     br_title_text.visibility = View.VISIBLE
                     br_not_text2.visibility = View.GONE
                     br_not_text.visibility = View.GONE
-                    br_title_text_title.text = "Поступило предложение"
+                    br_title_text_title.text = "An offer has been received"
                     br_title_text_text.text = text
                     br_not_firstbutton.text = butt1
                     br_not_secondbutton.text = butt2

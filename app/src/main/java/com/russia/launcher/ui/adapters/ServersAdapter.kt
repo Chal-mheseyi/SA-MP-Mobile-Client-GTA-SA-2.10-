@@ -59,15 +59,15 @@ class ServersAdapter(context: Activity, servers: List<Servers>) : RecyclerView.A
 //        when(server.online) {
 //            in 0..400 -> {
 //                holder.people.setColorFilter(Color.parseColor("#ffffff"), PorterDuff.Mode.SRC_ATOP)
-//                holder.textonline.text = "Низкая загруженность"
+//                holder.textonline.text = "Low Load"
 //            }
 //            in 400 .. 700 -> {
 //                holder.people.setColorFilter(Color.parseColor("#f59b33"), PorterDuff.Mode.SRC_ATOP)
-//                holder.textonline.text = "Средняя загруженность"
+//                holder.textonline.text = "Medium Load"
 //            }
 //            else -> {
 //                holder.people.setColorFilter(Color.parseColor("#f53333"), PorterDuff.Mode.SRC_ATOP)
-//                holder.textonline.text = "Высокая загруженность"
+//                holder.textonline.text = "High Load"
 //            }
 //        }
         holder.bearPaw.setColorFilter(MainColor, PorterDuff.Mode.SRC_ATOP)
@@ -98,7 +98,7 @@ class ServersAdapter(context: Activity, servers: List<Servers>) : RecyclerView.A
             NativeStorage.addClientProperty("ip", server.ip, context)
             NativeStorage.addClientProperty("port", server.port.toString(), context)
             saveServerInfoToStorage(server)
-            activityService!!.showInfoMessage("Сервер выбран! Для начала игры нажмите жёлтую кнопку", context)
+            activityService!!.showInfoMessage("Server selected! Press the yellow button to start the game", context)
         }
     }
 

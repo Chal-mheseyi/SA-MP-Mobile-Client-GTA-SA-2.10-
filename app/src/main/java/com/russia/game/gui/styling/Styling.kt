@@ -31,15 +31,15 @@ class Styling : NativeGui<StylingCenterBinding>(StylingCenterBinding::class), Co
     }
 
     private val items = arrayListOf(
-        TuningItem("Тип неона", R.drawable.ic_styling_neon),
-        TuningItem("Цвет неона", R.drawable.ic_styling_neon),
-        TuningItem("Цвет фар", R.drawable.ic_styling_lights),
-        TuningItem("Цвет тонера", R.drawable.ic_styling_toner),
-        TuningItem("Кузов (1)", R.drawable.ic_styling_color),
-        TuningItem("Кузов (2)", R.drawable.ic_styling_color),
-        TuningItem("Цвет дисков", R.drawable.ic_styling_wheel),
-        TuningItem("Винилы", R.drawable.ic_styling_vinil),
-        TuningItem("Стробоскопы", R.drawable.ic_styling_strob),
+        TuningItem("Neon Type", R.drawable.ic_styling_neon),
+        TuningItem("Neon Color", R.drawable.ic_styling_neon),
+        TuningItem("Headlight Color", R.drawable.ic_styling_lights),
+        TuningItem("Tint Color", R.drawable.ic_styling_toner),
+        TuningItem("Body (1)", R.drawable.ic_styling_color),
+        TuningItem("Body (2)", R.drawable.ic_styling_color),
+        TuningItem("Rim Color", R.drawable.ic_styling_wheel),
+        TuningItem("Vinyls", R.drawable.ic_styling_vinil),
+        TuningItem("Strobes", R.drawable.ic_styling_strob),
     )
     private val adapter = TuningAdapter(items, this)
 
@@ -125,11 +125,11 @@ class Styling : NativeGui<StylingCenterBinding>(StylingCenterBinding::class), Co
         when(pos) {
             ValueType.VALUE_TYPE_NEON_TYPE.ordinal -> {
                 val neonList = listOf(
-                    TuningSelectMenuItem("Нет неона", 0, 0),
-                    TuningSelectMenuItem("Статичный цвет", 500_000, 1),
-                    TuningSelectMenuItem("Переливающийся", 600_000, 2),
-                    TuningSelectMenuItem("Моргающий", 600_000, 3),
-                    TuningSelectMenuItem("Резкий", 600_000, 4)
+                    TuningSelectMenuItem("No neon", 0, 0),
+                    TuningSelectMenuItem("Static Color", 500_000, 1),
+                    TuningSelectMenuItem("Shimmering", 600_000, 2),
+                    TuningSelectMenuItem("Blinking", 600_000, 3),
+                    TuningSelectMenuItem("Sharp", 600_000, 4)
                 )
                 showSelectMenu(ValueType.VALUE_TYPE_NEON_TYPE, neonList)
             }
@@ -156,11 +156,11 @@ class Styling : NativeGui<StylingCenterBinding>(StylingCenterBinding::class), Co
             }
             ValueType.VALUE_TYPE_STROB.ordinal -> {
                 val strobList = listOf(
-                    TuningSelectMenuItem("Нет стробоскопа", 0, 0),
-                    TuningSelectMenuItem("Полицейский", 500_000, 1),
-                    TuningSelectMenuItem("Режим 2", 500_000, 2),
-                    TuningSelectMenuItem("Режим 3", 500_000, 3),
-                    TuningSelectMenuItem("Режим 4", 500_000, 4)
+                    TuningSelectMenuItem("No strobe", 0, 0),
+                    TuningSelectMenuItem("Police Officer", 500_000, 1),
+                    TuningSelectMenuItem("Mode 2", 500_000, 2),
+                    TuningSelectMenuItem("Mode 3", 500_000, 3),
+                    TuningSelectMenuItem("Mode 4", 500_000, 4)
                 )
                 showSelectMenu(ValueType.VALUE_TYPE_STROB, strobList);
             }
@@ -169,11 +169,11 @@ class Styling : NativeGui<StylingCenterBinding>(StylingCenterBinding::class), Co
                 val vinylsList = mutableListOf<TuningSelectMenuItem>()
 
                 vinylsList.add(
-                    TuningSelectMenuItem("Нет винила", 0, -1)
+                    TuningSelectMenuItem("No vinyl", 0, -1)
                 )
                 for(index in 0..MAX_VINYLS_INDEX) {
                     vinylsList.add(
-                        TuningSelectMenuItem("Винил #$index", 1_000_000, index)
+                        TuningSelectMenuItem("Vinyl #$index", 1_000_000, index)
                     )
                 }
 

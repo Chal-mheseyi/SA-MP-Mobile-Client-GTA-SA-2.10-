@@ -125,14 +125,14 @@ class Registration : NativeGui<RegistrationBinding>(RegistrationBinding::class) 
                 Utils.HideLayout(reg_right2, false)
                 Utils.ShowLayout(reg_right1, false)
                 reg_skin?.setBackgroundResource(R.drawable.reg_skin)
-                reg_infotitle?.text = "Выберите способ авторизации!"
+                reg_infotitle?.text = "Choose a login method!"
                 reg_info?.visibility = View.GONE
             }
             reg_btn?.setOnClickListener {
                 Utils.HideLayout(reg_right1, false)
                 Utils.ShowLayout(reg_right2, false)
                 reg_skin?.setBackgroundResource(R.drawable.reg_skin1)
-                reg_infotitle?.text = "Для начала игры заполните все поля"
+                reg_infotitle?.text = "Fill in all fields to start the game"
                 reg_info?.visibility = View.VISIBLE
             }
             reg_password?.addTextChangedListener(object : TextWatcher {

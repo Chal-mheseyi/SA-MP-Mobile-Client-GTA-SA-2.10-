@@ -39,7 +39,7 @@ public class DialogClientSettings extends DialogFragment {
         tabLayout = (TabLayout) rootview.findViewById(R.id.tabLayout);
         viewPager = (ViewPager) rootview.findViewById(R.id.masterViewPager);
         final DialogClientSettingsAdapter adapter = new DialogClientSettingsAdapter(getChildFragmentManager(), 0);
-        adapter.addFragment("Основное",DialogClientSettingsCommonFragment.createInstance("common"));
+        adapter.addFragment("Main",DialogClientSettingsCommonFragment.createInstance("common"));
 
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);

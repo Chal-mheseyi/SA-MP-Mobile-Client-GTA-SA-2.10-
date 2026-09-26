@@ -144,7 +144,7 @@ class BattlePass
     }
 
     private fun setRateByPoint() {
-        ratePageBinding.rateYouPlaceText.text = "$myPlaceByPoints место"
+        ratePageBinding.rateYouPlaceText.text = "$myPlaceByPoints place"
 
         ratePageBinding.rateCatByLvl.setBackgroundResource(0)
         ratePageBinding.rateNoDonateCat.setBackgroundResource(R.drawable.magicstore_cat_active_bg)
@@ -154,7 +154,7 @@ class BattlePass
     }
 
     private fun setRateByLvl() {
-        ratePageBinding.rateYouPlaceText.text = "$myPlaceByLvl место"
+        ratePageBinding.rateYouPlaceText.text = "$myPlaceByLvl place"
 
         ratePageBinding.rateNoDonateCat.setBackgroundResource(0)
         ratePageBinding.rateCatByLvl.setBackgroundResource(R.drawable.magicstore_cat_active_bg)
@@ -283,7 +283,7 @@ class BattlePass
             this.myPlaceByLvl = myPlaceByLvl
             this.myPlaceByPoints = myPlaceByPoints
 
-            mainPageBinding.currentLvlText.text = "Уровень $myLvl"
+            mainPageBinding.currentLvlText.text = "Level $myLvl"
             mainPageBinding.pointForUp.text = pointsForUp.toString()
             mainPageBinding.chipsCount.text = Samp.formatter.format(myChips)
 
@@ -306,7 +306,7 @@ class BattlePass
 
                 val formattedTime = String.format("%02d:%02d:%02d", hours, minutes, seconds)
 
-                tasksPageBinding.updateTasksTime.text = "До обновления заданий: $formattedTime"
+                tasksPageBinding.updateTasksTime.text = "Until tasks refresh: $formattedTime"
             }
         }
     }
@@ -319,7 +319,7 @@ class BattlePass
 
             val formattedDate = sdf.format(date)
 
-            binding.endDate.text = "Дата окончания: $formattedDate"
+            binding.endDate.text = "Expiration date: $formattedDate"
         }
     }
 

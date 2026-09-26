@@ -243,7 +243,7 @@ class LoaderActivity : AppCompatActivity() {
                 startActivity(intent)
                 finish()
             } else {
-                ActivityServiceImpl.showErrorMessage("Ошибка установки: файл не найден", this)
+                ActivityServiceImpl.showErrorMessage("Installation error: file not found", this)
                 finish()
                 exitProcess(EXIT_SUCCESS_STATUS)
             }

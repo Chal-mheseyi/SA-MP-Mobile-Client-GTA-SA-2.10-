@@ -51,7 +51,7 @@ class Achivments : AchivmentsListener, NativeGui<AchivmentsBinding>(AchivmentsBi
             for (achiv in achivmentsAdapter.list) {
                 if (achiv.isAchivmentComplete()) completeAchiv++
             }
-            binding.achivmentsProgress.text = String.format("Выполнено: %d из %d", completeAchiv, totalAchiv)
+            binding.achivmentsProgress.text = String.format("Completed: %d of %d", completeAchiv, totalAchiv)
         }
     }
 
@@ -63,7 +63,7 @@ class Achivments : AchivmentsListener, NativeGui<AchivmentsBinding>(AchivmentsBi
                 total += achiv.getAvailableReward()
             }
 
-            binding.achivmentsAvailableLc.text = String.format("Доступно: %s LC", Samp.formatter.format(total))
+            binding.achivmentsAvailableLc.text = String.format("Available: %s LC", Samp.formatter.format(total))
         }
     }
 

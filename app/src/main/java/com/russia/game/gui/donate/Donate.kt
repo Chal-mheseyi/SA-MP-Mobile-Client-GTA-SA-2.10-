@@ -104,7 +104,7 @@ class Donate : NativeGui<DonateBinding>(DonateBinding::class) {
             }
 
             // Сортировка
-            val sort = arrayOf("Сначала новые", "Сначала дорогие", "Сначала дешевые")
+            val sort = arrayOf("Newest First", "Most Expensive First", "Cheapest First")
             val spinner = activity.findViewById<Spinner>(R.id.donate_sort)
 
 
@@ -188,7 +188,7 @@ class Donate : NativeGui<DonateBinding>(DonateBinding::class) {
 
     private fun updateBalance(balance: Int) {
         activity.runOnUiThread {
-            donate_balance_text.text = String.format("Баланс: %s LC", Samp.formatter.format(balance.toLong()))
+            donate_balance_text.text = String.format("Balance: %s LC", Samp.formatter.format(balance.toLong()))
         }
     }
 
@@ -301,44 +301,44 @@ class Donate : NativeGui<DonateBinding>(DonateBinding::class) {
         }
         if(old.category == eOldCategory.ROULETTE_PRIZE_TYPE_HOUSESLOT.ordinal) {
             old.price = ceil((1000 / 3.5f).toDouble()).toInt()
-            old.name = "Слот для дома"
+            old.name = "House Slot"
             old.imgRecourse = getResId("house_slot")
             return old
         }
         if(old.category == eOldCategory.ROULETTE_PRIZE_TYPE_BIZSLOT.ordinal) {
             old.price = ceil((5000 / 3.5f).toDouble()).toInt()
-            old.name = "Слот для бизнеса"
+            old.name = "Business Slot"
             old.imgRecourse = getResId("biz_slot")
             return old
         }
         if(old.category == eOldCategory.ROULETTE_PRIZE_TYPE_LAW.ordinal) {
             old.price = 0
-            old.name = String.format("Законопослушность +%d", old.value)
+            old.name = String.format("Law-Abiding Score +%d", old.value)
             old.imgRecourse = getResId("donate_zakon")
             return old
         }
         if(old.category == eOldCategory.ROULETTE_PRIZE_TYPE_FAM_CARSLOT.ordinal) {
             old.price = ceil((200 / 3.5f).toDouble()).toInt()
-            old.name = "Слот для семейного авто"
+            old.name = "Family Vehicle Slot"
             old.imgRecourse = getResId("donate_family_car_slot")
             return old
         }
         if (old.category == eOldCategory.ROULETTE_PRIZE_TYPE_VIP_MONTH.ordinal) {
             if (old.value == 1) {
                 old.price = ceil((300 / 3.5f).toDouble()).toInt()
-                old.name = "Silver VIP\n( 30 дней )"
+                old.name = "Silver VIP\n(30 days)"
                 old.imgRecourse = getResId("silver_vip")
                 return old
             }
             if (old.value == 2) {
                 old.price = ceil((650 / 3.5f).toDouble()).toInt()
-                old.name = "Gold VIP\n( 30 дней )"
+                old.name = "Gold VIP\n(30 days)"
                 old.imgRecourse = getResId("gold_vip")
                 return old
             }
             if (old.value == 3) {
                 old.price = ceil((1000 / 3.5f).toDouble()).toInt()
-                old.name = "Platinum VIP\n( 30 дней )"
+                old.name = "Platinum VIP\n(30 days)"
                 old.imgRecourse = getResId("platinum_vip")
                 return old
             }
@@ -346,19 +346,19 @@ class Donate : NativeGui<DonateBinding>(DonateBinding::class) {
         if (old.category == eOldCategory.ROULETTE_PRIZE_TYPE_VIP_TWOWEEK.ordinal) {
             if (old.value == 1) {
                 old.price = ceil((170 / 3.5f).toDouble()).toInt()
-                old.name = "Silver VIP\n( 15 дней )"
+                old.name = "Silver VIP\n(15 days)"
                 old.imgRecourse = getResId("silver_vip")
                 return old
             }
             if (old.value == 2) {
                 old.price = ceil((370 / 3.5f).toDouble()).toInt()
-                old.name = "Gold VIP\n( 15 дней )"
+                old.name = "Gold VIP\n(15 days)"
                 old.imgRecourse = getResId("gold_vip")
                 return old
             }
             if (old.value == 3) {
                 old.price = ceil((570 / 3.5f).toDouble()).toInt()
-                old.name = "Platinum VIP\n( 15 дней )"
+                old.name = "Platinum VIP\n(15 days)"
                 old.imgRecourse = getResId("platinum_vip")
                 return old
             }
@@ -366,19 +366,19 @@ class Donate : NativeGui<DonateBinding>(DonateBinding::class) {
         if (old.category == eOldCategory.ROULETTE_PRIZE_TYPE_VIP_WEEK.ordinal) {
             if (old.value == 1) {
                 old.price = ceil((100 / 3.5f).toDouble()).toInt()
-                old.name = "Silver VIP\n( 7 дней )"
+                old.name = "Silver VIP\n(7 days)"
                 old.imgRecourse = getResId("silver_vip")
                 return old
             }
             if (old.value == 2) {
                 old.price = ceil((215 / 3.5f).toDouble()).toInt()
-                old.name = "Gold VIP\n( 7 дней )"
+                old.name = "Gold VIP\n(7 days)"
                 old.imgRecourse = getResId("gold_vip")
                 return old
             }
             if (old.value == 3) {
                 old.price = ceil((335 / 3.5f).toDouble()).toInt()
-                old.name = "Platinum VIP\n( 7 дней )"
+                old.name = "Platinum VIP\n(7 days)"
                 old.imgRecourse = getResId("platinum_vip")
                 return old
             }
@@ -386,62 +386,62 @@ class Donate : NativeGui<DonateBinding>(DonateBinding::class) {
         if (old.category == eOldCategory.ROULETTE_PRIZE_TYPE_VIP.ordinal) {
             if (old.value == 1) {
                 old.price = 0
-                old.name = "Silver VIP\n( 1 день )"
+                old.name = "Silver VIP\n(1 day)"
                 old.imgRecourse = getResId("silver_vip")
                 return old
             }
             if (old.value == 2) {
                 old.price = 0
-                old.name = "Gold VIP\n( 1 день )"
+                old.name = "Gold VIP\n(1 day)"
                 old.imgRecourse = getResId("gold_vip")
                 return old
             }
             if (old.value == 3) {
                 old.price = 0
-                old.name = "Platinum VIP\n( 1 день )"
+                old.name = "Platinum VIP\n(1 day)"
                 old.imgRecourse = getResId("platinum_vip")
                 return old
             }
         }
         if (old.category == eOldCategory.ROULETTE_PRIZE_TYPE_GUN.ordinal) {
             old.price = 0
-            old.name = "Случайное оружие ( 1.000 пт)"
+            old.name = "Random Weapon (1,000 pts)"
             old.imgRecourse = getResId("donate_gun")
             return old
         }
         if (old.category == eOldCategory.ROULETTE_PRIZE_TYPE_WARN.ordinal) {
             old.price = ceil((100 / 3.5f).toDouble()).toInt()
-            old.name = "Снятие варна"
+            old.name = "Removing a Warn"
             old.imgRecourse = getResId("donate_warn")
             return old
         }
         if (old.category == eOldCategory.ROULETTE_PRIZE_TYPE_CARSLOT.ordinal) {
             old.price = ceil((100 / 3.5f).toDouble()).toInt()
-            old.name = "Слот для авто"
+            old.name = "Vehicle Slot"
             old.imgRecourse = getResId("donate_veh_slot")
             return old
         }
         if (old.category == eOldCategory.ROULETTE_PRIZE_TYPE_ARMY.ordinal) {
             old.price = ceil((100 / 3.5f).toDouble()).toInt()
-            old.name = "Военный билет"
+            old.name = "Military ID"
             old.imgRecourse = getResId("donate_voen")
             return old
         }
         if (old.category == eOldCategory.ROULETTE_PRIZE_TYPE_LIC.ordinal) {
             old.price = ceil((150 / 3.5f).toDouble()).toInt()
-            old.name = "Комплект лицензий"
+            old.name = "License Set"
             old.imgRecourse = getResId("licenses_pack")
             return old
         }
         if (old.category == eOldCategory.ROULETTE_PRIZE_TYPE_MED.ordinal) {
             old.price = ceil((100 / 3.5f).toDouble()).toInt()
-            old.name = "Мед. карта"
+            old.name = "Medical Card"
             old.imgRecourse = getResId("donate_medcard")
             return old
         }
         if (old.category == eOldCategory.ROULETTE_PRIZE_TYPE_MONEY.ordinal) {
             old.price = 0
-            old.name = String.format("%s руб.", Samp.formatter.format(old.value.toLong()))
+            old.name = String.format("%s rub.", Samp.formatter.format(old.value.toLong()))
             old.imgRecourse = getResId("donate_money")
             return old
         }
@@ -459,7 +459,7 @@ class Donate : NativeGui<DonateBinding>(DonateBinding::class) {
         }
         if (old.category == eOldCategory.ROULETTE_PRIZE_TYPE_CHIP.ordinal) {
             old.price = 0
-            old.name = String.format("%d фишек", old.value)
+            old.name = String.format("%d chips", old.value)
             old.imgRecourse = getResId("donate_chips")
             return old
         }
@@ -484,7 +484,7 @@ class Donate : NativeGui<DonateBinding>(DonateBinding::class) {
             if(acsId == -1) {// FIXME: rollers, magic and stupid
                 old.imgRecourse = getResId("inv_rollers")
                 old.price = ceil(2_000 / 3.5f).toInt()
-                old.name = "Ролики"
+                old.name = "Roller Skates"
                 return old;
             }
 
@@ -683,15 +683,15 @@ class Donate : NativeGui<DonateBinding>(DonateBinding::class) {
             Vehicles.createDonateItem(558),
 
             //vip
-            DonateItem("Silver VIP\n( 7 дней )", CATEGORY_VIP, 100, getResId("silver_vip"), 0),
-            DonateItem("Silver VIP\n( 15 дней )", CATEGORY_VIP, 170, getResId("silver_vip"), 1),
-            DonateItem("Silver VIP\n( 30 дней )", CATEGORY_VIP, 300, getResId("silver_vip"), 2),
-            DonateItem("Gold VIP\n( 7 дней )", CATEGORY_VIP, 215, getResId("gold_vip"), 3),
-            DonateItem("Gold VIP\n( 15 дней )", CATEGORY_VIP, 370, getResId("gold_vip"), 4),
-            DonateItem("Gold VIP\n( 30 дней )", CATEGORY_VIP, 650, getResId("gold_vip"), 5),
-            DonateItem("Platinum VIP\n( 7 дней )", CATEGORY_VIP, 335, getResId("platinum_vip"), 6),
-            DonateItem("Platinum VIP\n( 15 дней )", CATEGORY_VIP, 570, getResId("platinum_vip"), 7),
-            DonateItem("Platinum VIP\n( 30 дней )", CATEGORY_VIP, 1000, getResId("platinum_vip"), 8),
+            DonateItem("Silver VIP\n(7 days)", CATEGORY_VIP, 100, getResId("silver_vip"), 0),
+            DonateItem("Silver VIP\n(15 days)", CATEGORY_VIP, 170, getResId("silver_vip"), 1),
+            DonateItem("Silver VIP\n(30 days)", CATEGORY_VIP, 300, getResId("silver_vip"), 2),
+            DonateItem("Gold VIP\n(7 days)", CATEGORY_VIP, 215, getResId("gold_vip"), 3),
+            DonateItem("Gold VIP\n(15 days)", CATEGORY_VIP, 370, getResId("gold_vip"), 4),
+            DonateItem("Gold VIP\n(30 days)", CATEGORY_VIP, 650, getResId("gold_vip"), 5),
+            DonateItem("Platinum VIP\n(7 days)", CATEGORY_VIP, 335, getResId("platinum_vip"), 6),
+            DonateItem("Platinum VIP\n(15 days)", CATEGORY_VIP, 570, getResId("platinum_vip"), 7),
+            DonateItem("Platinum VIP\n(30 days)", CATEGORY_VIP, 1000, getResId("platinum_vip"), 8),
 
             //acs
             Accessories.createDonateItem(5767),
@@ -707,22 +707,22 @@ class Donate : NativeGui<DonateBinding>(DonateBinding::class) {
             Accessories.createDonateItem(17979),
 
             // other
-            DonateItem("Колонка JBL", CATEGORY_OTHER, 1000, DONATE_OTHER_MUSIC, Accessories.getSnap(17581)),
+            DonateItem("JBL Speaker", CATEGORY_OTHER, 1000, DONATE_OTHER_MUSIC, Accessories.getSnap(17581)),
             DonateItem("EXP", CATEGORY_OTHER, 15, getResId("donate_exp"), DONATE_OTHER_EXP),
-            DonateItem("Ролики ( анимация ходьбы )", CATEGORY_OTHER, 2000, getResId("inv_rollers"), DONATE_OTHER_ROLLERS),
-            DonateItem("Слот для дома\n(От 1000)", CATEGORY_OTHER, 1000, getResId("house_slot"), DONATE_OTHER_HOUSE_SLOT),
-            DonateItem("Слот для Бизнеса", CATEGORY_OTHER, 5000, getResId("biz_slot"), DONATE_OTHER_BIZ_SLOT),
-            DonateItem("Снять варн", CATEGORY_OTHER, 100, getResId("donate_warn"), DONATE_OTHER_WARN),
-            DonateItem("Все лицензии", CATEGORY_OTHER, 150, getResId("licenses_pack"), DONATE_OTHER_LICENSES),
-            DonateItem("Изменить имя семьи", CATEGORY_OTHER, 100, getResId("donate_change_family_name"), DONATE_OTHER_CHANGE_FAM_NAME),
-            DonateItem("4-х значный номер", CATEGORY_OTHER, 250, getResId("donate_sim"), DONATE_OTHER_CHANGE_SIM),
-            DonateItem("Военный билет", CATEGORY_OTHER, 100, getResId("donate_voen"), DONATE_OTHER_VOEN),
-            DonateItem("Законопослушность\n( + 10 )", CATEGORY_OTHER, 5, getResId("donate_zakon"), DONATE_OTHER_ZAKON),
-            DonateItem("Мед. карта", CATEGORY_OTHER, 100, getResId("donate_medcard"), DONATE_OTHER_MED),
-            DonateItem("Смена ника", CATEGORY_OTHER, 250, getResId("donate_changenick"), DONATE_OTHER_CHANGE_NICK),
-            DonateItem("Смена пола", CATEGORY_OTHER, 100, getResId("donate_change_sex"), DONATE_OTHER_CHANGE_SEX),
-            DonateItem("Слот для авто", CATEGORY_OTHER, 100, getResId("donate_veh_slot"), DONATE_OTHER_VEH_SLOT),
-            DonateItem("Слот для семейного авто", CATEGORY_OTHER, 200, getResId("donate_family_car_slot"), DONATE_OTHER_VEH_FAMILY_SLOT),
-            DonateItem("Передача семьи", CATEGORY_OTHER, 1000, getResId("donate_give_family"), DONATE_OTHER_GIVE_FAMILY_SLOT))
+            DonateItem("Roller Skates (walking animation)", CATEGORY_OTHER, 2000, getResId("inv_rollers"), DONATE_OTHER_ROLLERS),
+            DonateItem("House Slot\n(From 1000)", CATEGORY_OTHER, 1000, getResId("house_slot"), DONATE_OTHER_HOUSE_SLOT),
+            DonateItem("Business Slot", CATEGORY_OTHER, 5000, getResId("biz_slot"), DONATE_OTHER_BIZ_SLOT),
+            DonateItem("Remove Warn", CATEGORY_OTHER, 100, getResId("donate_warn"), DONATE_OTHER_WARN),
+            DonateItem("All Licenses", CATEGORY_OTHER, 150, getResId("licenses_pack"), DONATE_OTHER_LICENSES),
+            DonateItem("Change Family Name", CATEGORY_OTHER, 100, getResId("donate_change_family_name"), DONATE_OTHER_CHANGE_FAM_NAME),
+            DonateItem("4-digit number", CATEGORY_OTHER, 250, getResId("donate_sim"), DONATE_OTHER_CHANGE_SIM),
+            DonateItem("Military ID", CATEGORY_OTHER, 100, getResId("donate_voen"), DONATE_OTHER_VOEN),
+            DonateItem("Law-Abiding Score\n(+10)", CATEGORY_OTHER, 5, getResId("donate_zakon"), DONATE_OTHER_ZAKON),
+            DonateItem("Medical Card", CATEGORY_OTHER, 100, getResId("donate_medcard"), DONATE_OTHER_MED),
+            DonateItem("Change Nickname", CATEGORY_OTHER, 250, getResId("donate_changenick"), DONATE_OTHER_CHANGE_NICK),
+            DonateItem("Change Gender", CATEGORY_OTHER, 100, getResId("donate_change_sex"), DONATE_OTHER_CHANGE_SEX),
+            DonateItem("Vehicle Slot", CATEGORY_OTHER, 100, getResId("donate_veh_slot"), DONATE_OTHER_VEH_SLOT),
+            DonateItem("Family Vehicle Slot", CATEGORY_OTHER, 200, getResId("donate_family_car_slot"), DONATE_OTHER_VEH_FAMILY_SLOT),
+            DonateItem("Family Transfer", CATEGORY_OTHER, 1000, getResId("donate_give_family"), DONATE_OTHER_GIVE_FAMILY_SLOT))
     }
 }

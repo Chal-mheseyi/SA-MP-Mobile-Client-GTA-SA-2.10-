@@ -95,7 +95,7 @@ class FileDownloader(
                 lastTime = currentTime
             }
 
-            val text = String.format("%s из %s (%s / сек.)",
+            val text = String.format("%s of %s (%s / sec.)",
                 BytesTo.convert(totalDownloadedSize),
                 BytesTo.convert(totalFilesSize),
                 BytesTo.convert(curSpeed)
@@ -135,7 +135,7 @@ class FileDownloader(
             ZIP_FILES_BASE_ADR + fileInfo.path + ".zip",
             loaderActivity.getExternalFilesDir(null).toString() + "/" + fileInfo.path + ".zip"
         )
-        println("Скачали файл ${fileInfo.path}")
+        println("Downloaded file ${fileInfo.path}")
         unzipFile(
             loaderActivity.getExternalFilesDir(null).toString() + "/" + fileInfo.path + ".zip",
             loaderActivity.getExternalFilesDir(null).toString() + "/" + fileInfo.path
@@ -152,7 +152,7 @@ class FileDownloader(
 
         //
         loaderActivity.runOnUiThread {
-            loaderActivity.speedText?.text = "Распаковка ..."
+            loaderActivity.speedText?.text = "Unpacking ..."
         }
 
         while (zipEntry != null) {
@@ -177,7 +177,7 @@ class FileDownloader(
         zipInputStream.close()
         zipFile.delete()
 
-        println("Распаковка завершена: ${from}")
+        println("Unpacking complete: ${from}")
     }
 
 }

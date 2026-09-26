@@ -80,42 +80,42 @@ class AttachEdit @SuppressLint("ClickableViewAccessibility") constructor() {
 
             attach_leftright.setOnClickListener { view: View ->
                 active_button = BUTTON_LEFT_RIGHT
-                attach_text_description.text = "Установите смещение по оси Y"
+                attach_text_description.text = "Set Y-axis offset"
                 SelectetItem(view)
             }
 
             attach_topbott.setOnClickListener { view: View ->
                 active_button = BUTTON_UP_DOWN
-                attach_text_description.text = "Установите смещение по оси Z"
+                attach_text_description.text = "Set Z-axis offset"
                 SelectetItem(view)
             }
 
             attach_pushpull.setOnClickListener { view: View ->
                 active_button = BUTTON_PUSH_PULL
-                attach_text_description.text = "Установите смещение по оси X"
+                attach_text_description.text = "Set X-axis offset"
                 SelectetItem(view)
             }
 
             attach_scale.setOnClickListener { view: View ->
-                attach_text_description.text = "Установите размер"
+                attach_text_description.text = "Set size"
                 active_button = BUTTON_SCALE
                 SelectetItem(view)
             }
 
             attach_rotX.setOnClickListener { view: View ->
-                attach_text_description.text = "Установите поворот"
+                attach_text_description.text = "Set rotation"
                 active_button = BUTTON_ROT_X
                 SelectetItem(view)
             }
 
             attach_rotY.setOnClickListener { view: View ->
-                attach_text_description.text = "Установите поворот"
+                attach_text_description.text = "Set rotation"
                 active_button = BUTTON_ROT_Y
                 SelectetItem(view)
             }
 
             attach_rotZ.setOnClickListener { view: View ->
-                attach_text_description.text = "Установите поворот"
+                attach_text_description.text = "Set rotation"
                 active_button = BUTTON_ROT_Z
                 SelectetItem(view)
             }

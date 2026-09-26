@@ -45,15 +45,15 @@ class Taxi : NativeGui<TaxiBinding>(TaxiBinding::class) {
         }
     }
 
-    private val fareTypes = listOf("Эконом", "Комфорт", "Бизнесс", "Элит")
+    private val fareTypes = listOf("Economy", "Comfort", "Business", "Elite")
     private fun updateInfo(driverName: String, fareType: Int, ordersCount: Int, salary: Int) {
         activity.runOnUiThread {
             toggleWindow(true)
 
             binding.driverName.text = driverName
-            binding.tatifs.text     = String.format("Тариф: %s", fareTypes[fareType])
-            binding.salary.text     = String.format("Заработано: %s", Samp.formatter.format(salary))
-            binding.countRide.text  = String.format("Поездок: %d", ordersCount)
+            binding.tatifs.text     = String.format("Rate: %s", fareTypes[fareType])
+            binding.salary.text     = String.format("Earned: %s", Samp.formatter.format(salary))
+            binding.countRide.text  = String.format("Trips: %d", ordersCount)
         }
     }
 
@@ -116,9 +116,9 @@ class Taxi : NativeGui<TaxiBinding>(TaxiBinding::class) {
             timeInMinutes = 1
 
         val formattedDistance = String.format("%.1f km", distanceKm)
-        val formattedTime = "$timeInMinutes мин."
+        val formattedTime = "$timeInMinutes min."
 
-        return "Подача: $formattedDistance (~$formattedTime)"
+        return "Delivery: $formattedDistance (~$formattedTime)"
     }
 
 }

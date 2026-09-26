@@ -77,8 +77,8 @@ class FuelStation(type: Int, price1: Int, price2: Int, price3: Int, price4: Int,
                     else if (fuelstation_active == 5) {
                         fuelprice = price5 * progress
                     }
-                    fuelstation_buyinfo.text = String.format("%s руб.", Samp.formatter.format(fuelprice))
-                    fuelstation_literinfo.text = String.format("%s л", progress)
+                    fuelstation_buyinfo.text = String.format("%s rub.", Samp.formatter.format(fuelprice))
+                    fuelstation_literinfo.text = String.format("%s L", progress)
                 }
 
                 override fun onStartTrackingTouch(seekBar: SeekBar) {}
@@ -97,7 +97,7 @@ class FuelStation(type: Int, price1: Int, price2: Int, price3: Int, price4: Int,
 
                 fuelstation_active = 1
                 fuelprice = price1 * fuelstation_bar.progress
-                val strpriceinfo1 = String.format("%s руб.", Samp.formatter.format(fuelprice))
+                val strpriceinfo1 = String.format("%s rub.", Samp.formatter.format(fuelprice))
                 fuelstation_buyinfo.text = strpriceinfo1
             }
             fuelstation_2.setOnClickListener {
@@ -105,7 +105,7 @@ class FuelStation(type: Int, price1: Int, price2: Int, price3: Int, price4: Int,
 
                 fuelstation_active = 2
                 fuelprice = price2 * fuelstation_bar.progress
-                val strpriceinfo2 = String.format("%s руб.", Samp.formatter.format(fuelprice))
+                val strpriceinfo2 = String.format("%s rub.", Samp.formatter.format(fuelprice))
                 fuelstation_buyinfo.text = strpriceinfo2
             }
             fuelstation_3.setOnClickListener {
@@ -113,7 +113,7 @@ class FuelStation(type: Int, price1: Int, price2: Int, price3: Int, price4: Int,
 
                 fuelstation_active = 3
                 fuelprice = price3 * fuelstation_bar.progress
-                val strpriceinfo3 = String.format("%s руб.", Samp.formatter.format(fuelprice))
+                val strpriceinfo3 = String.format("%s rub.", Samp.formatter.format(fuelprice))
                 fuelstation_buyinfo.text = strpriceinfo3
             }
             fuelstation_4.setOnClickListener {
@@ -121,7 +121,7 @@ class FuelStation(type: Int, price1: Int, price2: Int, price3: Int, price4: Int,
 
                 fuelstation_active = 4
                 fuelprice = price4 * fuelstation_bar.progress
-                val strpriceinfo4 = String.format("%s руб.", Samp.formatter.format(fuelprice))
+                val strpriceinfo4 = String.format("%s rub.", Samp.formatter.format(fuelprice))
                 fuelstation_buyinfo.text = strpriceinfo4
             }
             fuelstation_5.setOnClickListener {
@@ -129,39 +129,39 @@ class FuelStation(type: Int, price1: Int, price2: Int, price3: Int, price4: Int,
 
                 fuelstation_active = 5
                 fuelprice = price5 * fuelstation_bar.progress
-                val strpriceinfo5 = String.format("%s руб.", Samp.formatter.format(fuelprice))
+                val strpriceinfo5 = String.format("%s rub.", Samp.formatter.format(fuelprice))
                 fuelstation_buyinfo.text = strpriceinfo5
             }
 
-            fuelstation_1_info.text = String.format("%sр/литр", price1)
-            fuelstation_2_info.text = String.format("%sр/литр", price2)
-            fuelstation_3_info.text = String.format("%sр/литр", price3)
-            fuelstation_4_info.text = String.format("%sр/литр", price5)
-            fuelstation_5_info.text = String.format("%sр/литр", price4)
+            fuelstation_1_info.text = String.format("%s rub/liter", price1)
+            fuelstation_2_info.text = String.format("%s rub/liter", price2)
+            fuelstation_3_info.text = String.format("%s rub/liter", price3)
+            fuelstation_4_info.text = String.format("%s rub/liter", price5)
+            fuelstation_5_info.text = String.format("%s rub/liter", price4)
 
-            fuelstation_buyinfo.text = "0 р"
-            fuelstation_literinfo.text = "0 л"
+            fuelstation_buyinfo.text = "0 rub"
+            fuelstation_literinfo.text = "0 L"
             fuelstation_bar.max = maxCount
             fuelstation_bar.progress = 0
             fuelstation_active = type
             if (type == 1) {
-                fuelstation_info.text = "Рекомендуемый тип топлива: АИ-92"
+                fuelstation_info.text = "Recommended fuel type: AI-92"
                 setActiveItem(fuelstation_1)
             }
             else if (type == 2) {
-                fuelstation_info.text = "Рекомендуемый тип топлива: АИ-95"
+                fuelstation_info.text = "Recommended fuel type: AI-95"
                 setActiveItem(fuelstation_2)
             }
             else if (type == 3) {
-                fuelstation_info.text = "Рекомендуемый тип топлива: АИ-98"
+                fuelstation_info.text = "Recommended fuel type: AI-98"
                 setActiveItem(fuelstation_3)
             }
             else if (type == 4) {
-                fuelstation_info.text = "Рекомендуемый тип топлива: ДТ"
+                fuelstation_info.text = "Recommended fuel type: Diesel"
                 setActiveItem(fuelstation_4)
             }
             else if (type == 5) {
-                fuelstation_info.text = "Рекомендуемый тип топлива: АИ-100"
+                fuelstation_info.text = "Recommended fuel type: AI-100"
                 setActiveItem(fuelstation_5)
             }
         }

@@ -17,26 +17,26 @@ object MagicStoreItems {
     const val CATEGORY_SKINS = 4
 
     val list = listOf(
-        MagicStoreItem("Инфернал", CATEGORY_ANIMALS, 7_500, PRICE_GOLD, Accessories.getSnap(17342)),
-        MagicStoreItem("Сильфида", CATEGORY_ANIMALS, 7_500, PRICE_GOLD, Accessories.getSnap(17346)),
+        MagicStoreItem("Infernal", CATEGORY_ANIMALS, 7_500, PRICE_GOLD, Accessories.getSnap(17342)),
+        MagicStoreItem("Sylph", CATEGORY_ANIMALS, 7_500, PRICE_GOLD, Accessories.getSnap(17346)),
 
-        MagicStoreItem("Щит Капитана Америки", CATEGORY_ITEMS, 7_500, PRICE_GOLD, Accessories.getSnap(16849)),
-        MagicStoreItem("Меч Саурона", CATEGORY_ITEMS, 5_000, PRICE_GOLD, Accessories.getSnap(17359)),
-        MagicStoreItem("Топор Этригана", CATEGORY_ITEMS, 5_000, PRICE_GOLD, Accessories.getSnap(16583)),
-        MagicStoreItem("Трезубец Сулимо", CATEGORY_ITEMS, 5_000, PRICE_GOLD, Accessories.getSnap(17350)),
-        MagicStoreItem("Коса Баланара", CATEGORY_ITEMS, 5_000, PRICE_GOLD, Accessories.getSnap(17351)),
+        MagicStoreItem("Captain America's Shield", CATEGORY_ITEMS, 7_500, PRICE_GOLD, Accessories.getSnap(16849)),
+        MagicStoreItem("Sword of Sauron", CATEGORY_ITEMS, 5_000, PRICE_GOLD, Accessories.getSnap(17359)),
+        MagicStoreItem("Etrigan's Axe", CATEGORY_ITEMS, 5_000, PRICE_GOLD, Accessories.getSnap(16583)),
+        MagicStoreItem("Sulimo's Trident", CATEGORY_ITEMS, 5_000, PRICE_GOLD, Accessories.getSnap(17350)),
+        MagicStoreItem("Balanar's Scythe", CATEGORY_ITEMS, 5_000, PRICE_GOLD, Accessories.getSnap(17351)),
 
-        MagicStoreItem("Ключ в подземелье", CATEGORY_CONSUMABLES, 100, PRICE_BRONZE, getRecourse("inv_key_dungeon")),
-        MagicStoreItem("Ключ от сундука", CATEGORY_CONSUMABLES, 100, PRICE_SILVER, getRecourse("inv_key_chest")),
-        MagicStoreItem("Колокольчик", CATEGORY_CONSUMABLES, 5, PRICE_GOLD, getRecourse("inv_bell")),
+        MagicStoreItem("Key to the Dungeon", CATEGORY_CONSUMABLES, 100, PRICE_BRONZE, getRecourse("inv_key_dungeon")),
+        MagicStoreItem("Chest Key", CATEGORY_CONSUMABLES, 100, PRICE_SILVER, getRecourse("inv_key_chest")),
+        MagicStoreItem("Bell", CATEGORY_CONSUMABLES, 5, PRICE_GOLD, getRecourse("inv_bell")),
 
-        MagicStoreItem("Зелье исцеления", CATEGORY_POTIONS, 1, PRICE_GOLD, getRecourse("inv_potion_health")),
-        MagicStoreItem("Зелье мудрости", CATEGORY_POTIONS, 150, PRICE_SILVER, getRecourse("inv_potion_wisdom")),
-        MagicStoreItem("Зелье сытости", CATEGORY_POTIONS, 100, PRICE_BRONZE, getRecourse("inv_potion_satiety")),
-        MagicStoreItem("Зелье Божества", CATEGORY_POTIONS, 5, PRICE_GOLD, getRecourse("inv_potion_deities")),
-        MagicStoreItem("Зелье инфернала", CATEGORY_POTIONS, 2, PRICE_GOLD, getRecourse("inv_potion_infernal")),
-        MagicStoreItem("Зелье сильфиды", CATEGORY_POTIONS, 2, PRICE_GOLD, getRecourse("inv_potion_sylphs")),
-        MagicStoreItem("Зелье репутации", CATEGORY_POTIONS, 1, PRICE_GOLD, getRecourse("inv_potion_reputation")),
+        MagicStoreItem("Healing Potion", CATEGORY_POTIONS, 1, PRICE_GOLD, getRecourse("inv_potion_health")),
+        MagicStoreItem("Potion of Wisdom", CATEGORY_POTIONS, 150, PRICE_SILVER, getRecourse("inv_potion_wisdom")),
+        MagicStoreItem("Satiety Potion", CATEGORY_POTIONS, 100, PRICE_BRONZE, getRecourse("inv_potion_satiety")),
+        MagicStoreItem("Potion of the Deity", CATEGORY_POTIONS, 5, PRICE_GOLD, getRecourse("inv_potion_deities")),
+        MagicStoreItem("Infernal Potion", CATEGORY_POTIONS, 2, PRICE_GOLD, getRecourse("inv_potion_infernal")),
+        MagicStoreItem("Sylph Potion", CATEGORY_POTIONS, 2, PRICE_GOLD, getRecourse("inv_potion_sylphs")),
+        MagicStoreItem("Reputation Potion", CATEGORY_POTIONS, 1, PRICE_GOLD, getRecourse("inv_potion_reputation")),
 
         MagicStoreItem(Skins.getName(153), CATEGORY_SKINS, 5000, PRICE_GOLD, Skins.getSnap(153)),
         MagicStoreItem(Skins.getName(38), CATEGORY_SKINS, 5000, PRICE_GOLD, Skins.getSnap(38)),

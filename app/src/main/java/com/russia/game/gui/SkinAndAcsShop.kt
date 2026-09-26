@@ -53,7 +53,7 @@ class SkinAndAcsShop : NativeGuiWrapper {
 
     fun update(type: Int, price: Int) {
         activity.runOnUiThread {
-            val price = String.format("%s руб.", Samp.formatter.format(price.toLong()))
+            val price = String.format("%s rub.", Samp.formatter.format(price.toLong()))
             shopstore_buyinfo?.text = price
             if (type == 0) {
                 shopstore_camera?.visibility = View.VISIBLE

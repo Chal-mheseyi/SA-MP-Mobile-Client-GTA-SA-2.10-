@@ -40,7 +40,7 @@ class BattlePassTasksAdapter(var listener: BattlePassTasksAdapterListener)
         else
             binding.completedLayout.visibility = View.GONE
 
-        binding.progressText.text = String.format("%d из %d", item.curProgress, item.maxProgress)
+        binding.progressText.text = String.format("%d of %d", item.curProgress, item.maxProgress)
     }
 
     override fun getItemCount(): Int {

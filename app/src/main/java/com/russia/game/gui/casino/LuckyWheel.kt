@@ -38,9 +38,9 @@ class LuckyWheel : NativeGui<CasinoLuckyWheelBinding>(CasinoLuckyWheelBinding::c
             binding.casinoLuckywheelCount.text = String.format("%d", count)
             if (count <= 0) {
                 val timeleft = SimpleDateFormat("HH:mm").format(Date((time * 1000).toLong()))
-                binding.casinoLuckywheelSpeenFreeButt.text = "Доступно через $timeleft"
+                binding.casinoLuckywheelSpeenFreeButt.text = "Available in $timeleft"
             } else {
-                binding.casinoLuckywheelSpeenFreeButt.text = "бесплатная прокрутка"
+                binding.casinoLuckywheelSpeenFreeButt.text = "free spin"
             }
 
         }

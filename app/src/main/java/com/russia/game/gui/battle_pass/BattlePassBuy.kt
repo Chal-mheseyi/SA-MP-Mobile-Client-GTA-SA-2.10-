@@ -51,7 +51,7 @@ class BattlePassBuy : NativeGui<BattlepassBuyBinding>(BattlepassBuyBinding::clas
 
             val formattedDate = sdf.format(date)
 
-            binding.endDate.text = "Дата окончания: $formattedDate"
+            binding.endDate.text = "Expiration date: $formattedDate"
         }
     }
 

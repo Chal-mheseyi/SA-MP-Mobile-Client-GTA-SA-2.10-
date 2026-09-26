@@ -54,7 +54,7 @@ class Inventory : InventoryListener, NativeGui<InventoryBinding>(InventoryBindin
                 sendClickButton(INVENTAR_BUTTON_DELETE)
             }
 
-            //кнопка продать
+            //кнопка sell
             binding.invSellButt.setOnClickListener {
                 sendClickButton(INVENTAR_BUTTON_TRATE)
             }

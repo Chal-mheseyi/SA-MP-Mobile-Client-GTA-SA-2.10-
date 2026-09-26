@@ -160,7 +160,7 @@ class Samp : GTASA() {
             val clipData = ClipData.newPlainText("text", string)
             clipboardManager.setPrimaryClip(clipData)
 
-            Toast.makeText(this, "Скопированно в буфер обмена ", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Copied to clipboard ", Toast.LENGTH_SHORT).show()
         }
     }
 

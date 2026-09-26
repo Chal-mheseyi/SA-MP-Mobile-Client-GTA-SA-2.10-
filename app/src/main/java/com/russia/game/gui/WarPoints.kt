@@ -9,10 +9,10 @@ class WarPoints : NativeGui<WarPointsBinding>(WarPointsBinding::class) {
 
     fun update(time: Int, myPoints: Int, enemyScore: Int) {
         Samp.activity.runOnUiThread {
-            binding.myPointsText.text       = String.format("Ваши очки: %d", myPoints)
-            binding.enemyPointsText.text    = String.format("Вражеские очки: %d", enemyScore)
+            binding.myPointsText.text       = String.format("Your points: %d", myPoints)
+            binding.enemyPointsText.text    = String.format("Enemy points: %d", enemyScore)
 
-            binding.timeText.text = String.format("%d секунд", time)
+            binding.timeText.text = String.format("%d seconds", time)
         }
     }
 

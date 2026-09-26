@@ -35,7 +35,7 @@ object CacheChecker {
             val file = iterator.next()
             for (ext in MainUtils.usselesTex) {
                 if (file.path.contains(ext)) {
-                    println("Удаление файла: ${file.path}")
+                    println("Deleting file: ${file.path}")
                     iterator.remove() // Удаляем файл из списка
                 }
             }

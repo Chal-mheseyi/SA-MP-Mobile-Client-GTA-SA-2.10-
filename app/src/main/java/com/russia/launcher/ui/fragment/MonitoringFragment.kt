@@ -52,9 +52,9 @@ class MonitoringFragment : Fragment() {
         recyclerServers?.adapter = serversAdapter
         if (ServersList.servers.isNotEmpty()) {
             val players = ServersList.servers[0].onlinePer30Min;
-            userPer30Min?.setText(String.format("%d игроков", players));
+            userPer30Min?.setText(String.format("%d players", players));
         } else {
-            userPer30Min?.setText("Нет данных о игроках");
+            userPer30Min?.setText("No player data");
         }
 
     }

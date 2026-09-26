@@ -48,17 +48,17 @@ class MineGame3 {
             }
             mine_3_progress = activity.findViewById(R.id.mine_3_progress)
             mine_3_score = activity.findViewById(R.id.mine_3_score)
-            dimonds_box_captions[2] = "Золото"
+            dimonds_box_captions[2] = "Gold"
             dimonds_box_captions_color[2] = Color.parseColor("#fdd835")
-            dimonds_box_captions[3] = "Кристалл"
+            dimonds_box_captions[3] = "Crystal"
             dimonds_box_captions_color[3] = Color.parseColor("#00e5ff")
-            dimonds_box_captions[0] = "Кварц"
+            dimonds_box_captions[0] = "Quartz"
             dimonds_box_captions_color[0] = Color.parseColor("#f06292")
-            dimonds_box_captions[4] = "Руда"
+            dimonds_box_captions[4] = "Ore"
             dimonds_box_captions_color[4] = Color.parseColor("#8391AC")
-            dimonds_box_captions[1] = "Медь"
+            dimonds_box_captions[1] = "Copper"
             dimonds_box_captions_color[1] = Color.parseColor("#C1620A")
-            dimonds_box_captions[5] = "Уголь"
+            dimonds_box_captions[5] = "Coal"
             dimonds_box_captions_color[5] = Color.parseColor("#c7c7c7")
             box.add(activity.findViewById(R.id.mine_3_box_1))
             box.add(activity.findViewById(R.id.mine_3_box_2))

@@ -360,7 +360,7 @@ class CasinoBaccarat : NativeGui<CasinoBcBinding>(CasinoBcBinding::class) {
                     }
                 }
                 youWin = true
-                casino_bc_win_text.text = "Вы выиграли"
+                casino_bc_win_text.text = "You won"
                 if (currentBetType != BET_TYPE_GREEN) {
                     casino_bc_win_value.text = String.format("%d", currentBet * 2)
                 }
@@ -371,7 +371,7 @@ class CasinoBaccarat : NativeGui<CasinoBcBinding>(CasinoBcBinding::class) {
                 casino_bc_win_icon.visibility = View.VISIBLE
             }
             else {
-                casino_bc_win_text.text = "Вы проиграли"
+                casino_bc_win_text.text = "You lost"
                 casino_bc_win_value.visibility = View.GONE
                 casino_bc_win_icon.visibility = View.GONE
             }
@@ -387,7 +387,7 @@ class CasinoBaccarat : NativeGui<CasinoBcBinding>(CasinoBcBinding::class) {
                 }
 
                 BET_TYPE_GREEN -> {
-                    binding.winCaption.text = "Ничья"
+                    binding.winCaption.text = "Draw"
                     casino_bc_win_header.backgroundTintList = ColorStateList.valueOf(Color.parseColor("#205537"))
                 }
 

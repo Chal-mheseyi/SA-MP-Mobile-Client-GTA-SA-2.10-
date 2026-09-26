@@ -25,7 +25,7 @@ class TuningAdapter(val list: List<TuningItem>, val listener: TuningAdapterListe
 
     override fun onBindViewHolder(holder: ViewHolder, pos: Int) {
         holder.caption.text = list[pos].caption
-        holder.priceText.text = String.format("от %s руб.", Samp.formatter.format(list[pos].price))
+        holder.priceText.text = String.format("from %s rub.", Samp.formatter.format(list[pos].price))
         holder.icon.setImageResource(list[pos].icon)
     }
 

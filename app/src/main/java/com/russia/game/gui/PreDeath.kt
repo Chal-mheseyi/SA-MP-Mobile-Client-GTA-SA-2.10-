@@ -101,9 +101,9 @@ class PreDeath {
     fun showPreDeath(killerName: String?, killerID: Int) { // death
         activity.runOnUiThread {
             if(killerID == Samp.INVALID_PLAYER_ID)
-                pre_death_caption_textview.text = Html.fromHtml("Вы были <font color='#fbc02d'>ранены</font>")
+                pre_death_caption_textview.text = Html.fromHtml("You were <font color='#fbc02d'>injured</font>")
             else
-                pre_death_caption_textview.text = Html.fromHtml("Вы были <font color='#fbc02d'>ранены</font> игроком")
+                pre_death_caption_textview.text = Html.fromHtml("You were <font color='#fbc02d'>injured</font> by player")
 
             timeRemaining = 15
             pde_death_game_buttons.visibility = View.GONE
@@ -126,7 +126,7 @@ class PreDeath {
         health = 0
         pulse = health
         activity.runOnUiThread {
-            pre_death_caption_textview.text = Html.fromHtml("<font color='#fbc02d'>Пострадавший</font>")
+            pre_death_caption_textview.text = Html.fromHtml("<font color='#fbc02d'>Injured</font>")
             pde_death_game_buttons.visibility = View.VISIBLE
             pre_death_deathbuttons_layout.visibility = View.GONE
             pre_death_killer_text.text = playerName
@@ -139,23 +139,23 @@ class PreDeath {
         for (i in 0..19) {
             if (Thread.currentThread().isInterrupted) {
                 timeRemaining = 0
-                setButtonText("В БОЛЬНИЦУ")
+                setButtonText("TO HOSPITAL")
                 break
             }
             timeRemaining--
             if (timeRemaining == 0) {
                 //toHospitalButton.setBackgroundTintList(ContextCompat.getColor(this));
-                setButtonText("В БОЛЬНИЦУ")
+                setButtonText("TO HOSPITAL")
                 break
             }
             else {
-                setButtonText("Доступно через $timeRemaining")
+                setButtonText("Available in $timeRemaining")
             }
             try {
                 Thread.sleep(1000)
             } catch (e: InterruptedException) {
                 timeRemaining = 0
-                setButtonText("В БОЛЬНИЦУ")
+                setButtonText("TO HOSPITAL")
                 break
             }
         }
