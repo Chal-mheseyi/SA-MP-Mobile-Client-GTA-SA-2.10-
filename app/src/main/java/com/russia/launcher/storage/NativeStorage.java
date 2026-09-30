@@ -35,9 +35,15 @@ public class NativeStorage {
                 throw new IOException("Unable to create settings directory: " + parent);
             }
 
-            Wini w = new Wini(settingsFile);
-            w.put(CLIENT_SECTION_NAME, propertyName, value == null ? "" : value);
-            w.store();
+            Wini w;
+			if (settingsFile.exists()) {
+			    w = new Wini(settingsFile);
+			} else {
+			    w = new Wini();
+			    w.setFile(settingsFile);
+			}
+			w.put(CLIENT_SECTION_NAME, propertyName, value == null ? "" : value);
+			w.store();
         } catch (InvalidFileFormatException e) {
             throw new RuntimeException("Invalid settings.ini format", e);
         } catch (IOException e) {
