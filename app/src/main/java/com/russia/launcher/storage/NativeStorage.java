@@ -17,39 +17,48 @@ public class NativeStorage {
 
     private static final String CLIENT_SECTION_NAME = "client";
 
+    private static File getSettingsFile(Context context) {
+        File externalFilesDir = context.getExternalFilesDir(null);
+        if (externalFilesDir == null) {
+            throw new IllegalStateException("External files directory is unavailable");
+        }
 
+        return new File(externalFilesDir, NATIVE_SETTINGS_FILE_PATH.substring(1));
+    }
 
     public static void addClientProperty(String propertyName, String value, Context context) {
         try {
-            File f = new File(context.getExternalFilesDir(null) + NATIVE_SETTINGS_FILE_PATH);
+            File settingsFile = getSettingsFile(context);
+            File parent = settingsFile.getParentFile();
 
-            if (!f.exists()) {
-                return;
+            if (parent != null && !parent.exists() && !parent.mkdirs()) {
+                throw new IOException("Unable to create settings directory: " + parent);
             }
 
-            Wini w = new Wini(new File(context.getExternalFilesDir(null) + NATIVE_SETTINGS_FILE_PATH));
-            w.put(CLIENT_SECTION_NAME, propertyName, value);
+            Wini w = new Wini(settingsFile);
+            w.put(CLIENT_SECTION_NAME, propertyName, value == null ? "" : value);
             w.store();
         } catch (InvalidFileFormatException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Invalid settings.ini format", e);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Unable to save settings.ini", e);
         }
     }
 
     public static String getClientProperty(String property, Context context) {
-
-        String value = null;
-
         try {
-            Wini w = new Wini(new File(context.getExternalFilesDir(null) + NATIVE_SETTINGS_FILE_PATH));
-            value = w.get(CLIENT_SECTION_NAME, property);
-            w.store();
+            File settingsFile = getSettingsFile(context);
+
+            if (!settingsFile.exists()) {
+                return "";
+            }
+
+            Wini w = new Wini(settingsFile);
+            String value = w.get(CLIENT_SECTION_NAME, property);
+            return value == null ? "" : value;
         } catch (IOException ignored) {
-
+            return "";
         }
-
-        return value;
     }
 
     private static void showMessage(String message, Context context) {
