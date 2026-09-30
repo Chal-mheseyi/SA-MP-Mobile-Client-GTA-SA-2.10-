@@ -28,11 +28,6 @@ public class Validator {
             return false;
         }
 
-        if (nickname.matches(InputPatterns.STRING_WITH_DIGITS_PATTERN)) {
-            showMessage(ErrorMessage.NICKNAME_CONTAINS_DIGITS.getText(), activity);
-            return false;
-        }
-
         if (nickname.length() > NICKNAME_MAX_LENGTH) {
             showMessage(ErrorMessage.NICKNAME_IS_TOO_LONG.getText(), activity);
             return false;
