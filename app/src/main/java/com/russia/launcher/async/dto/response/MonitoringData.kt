@@ -26,30 +26,32 @@ object ServersList {
     var news: List<News> = listOf()
     var servers: List<Servers> = listOf()
 
-    fun load(activity: Activity, net: NetworkService, listener: MonitoringDataLoaderListener) {
-        val call = net.monitoringData
+  fun load(activity: Activity, net: NetworkService, listener: MonitoringDataLoaderListener) {
+    val call = net.monitoringData
 
-        call?.enqueue(object : Callback<MonitoringData?> {
-            override fun onResponse(call: Call<MonitoringData?>, response: Response<MonitoringData?>) {
-                if (response.isSuccessful) {
-                    val monitoringData = response.body()
+    call?.enqueue(object : Callback<MonitoringData?> {
+        override fun onResponse(call: Call<MonitoringData?>, response: Response<MonitoringData?>) {
+            android.widget.Toast.makeText(activity, "Monitoring response: code=${response.code()} successful=${response.isSuccessful}", android.widget.Toast.LENGTH_LONG).show()
+            if (response.isSuccessful) {
+                val monitoringData = response.body()
 
-                    news = monitoringData?.news!!
-                    servers = monitoringData.servers
+                news = monitoringData?.news!!
+                servers = monitoringData.servers
 
-                    saveToFile(activity, monitoringData)
+                saveToFile(activity, monitoringData)
 
-                    listener.monitoringDataLoadedSuccess()
-                    return
-                }
-                loadFromFile(activity, listener)
+                listener.monitoringDataLoadedSuccess()
+                return
             }
+            loadFromFile(activity, listener)
+        }
 
-            override fun onFailure(call: Call<MonitoringData?>, t: Throwable) {
-                loadFromFile(activity, listener)
-            }
-        })
-    }
+        override fun onFailure(call: Call<MonitoringData?>, t: Throwable) {
+            android.widget.Toast.makeText(activity, "Monitoring load failed: ${t.message}", android.widget.Toast.LENGTH_LONG).show()
+            loadFromFile(activity, listener)
+        }
+    })
+}
 
     fun saveToFile(context: Context, data: MonitoringData) {
         try {
