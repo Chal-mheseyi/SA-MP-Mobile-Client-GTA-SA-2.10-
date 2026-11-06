@@ -5,6 +5,23 @@
 #include "java_systems/HUD.h"
 #include "util/patch.h"
 #include "CDebugInfo.h"
+#include <sys/stat.h>
+
+// Change these to your server (used only when settings.ini has no ip/port yet)
+#define DEFAULT_SERVER_IP   "51.83.49.125"
+#define DEFAULT_SERVER_PORT 17045
+
+// ini_table_get_entry() returns NULL when a key is missing, so never use it directly
+static const char* IniGet(ini_table_s *config, const char *section, const char *key, const char *def = "")
+{
+	const char *v = ini_table_get_entry(config, section, key);
+	return v ? v : def;
+}
+
+static void CopyStr(char *dst, size_t dstSize, const char *src)
+{
+	snprintf(dst, dstSize, "%s", src ? src : "");
+}
 
 stSettings CSettings::m_Settings;
 
@@ -23,10 +40,11 @@ void CSettings::toDefaults(int iCategory)
 	sprintf(buff, "%sSAMP/settings.ini", g_pszStorage);
 
 	FILE *pFile = fopen(buff, "w");
-
-	fwrite("[gui]", 1, 6, pFile);
-
-	fclose(pFile);
+	if (pFile)
+	{
+		fputs("[gui]\n", pFile);
+		fclose(pFile);
+	}
 
 	save(iCategory);
 	LoadSettings(m_Settings.szNickName);
@@ -90,23 +108,27 @@ extern void ApplyFPSPatch(uint8_t fps);
 void CSettings::LoadSettings(const char *szNickName, int iChatLines)
 {
 	char tempNick[40];
+	tempNick[0] = 0;
 	if (szNickName)
 	{
-		strcpy(tempNick, szNickName);
+		CopyStr(tempNick, sizeof(tempNick), szNickName);
 	}
 
         Log("Loading settings..");
 
         char buff[0x7F];
-        sprintf(buff, "%sSAMP/settings.ini", g_pszStorage);
+        char dirBuff[0x7F];
+        snprintf(dirBuff, sizeof(dirBuff), "%sSAMP", g_pszStorage);
+        mkdir(dirBuff, 0777);
+        snprintf(buff, sizeof(buff), "%sSAMP/settings.ini", g_pszStorage);
 
         ini_table_s *config = ini_table_create();
         Log("Opening settings: %s", buff);
         if (!ini_table_read_from_file(config, buff))
         {
                 Log("No settings found, creating default...");
-                ini_table_create_entry(config, "client", "ip", "51.68.107.75");
-                ini_table_create_entry_as_int(config, "client", "port", 26021);
+                ini_table_create_entry(config, "client", "ip", DEFAULT_SERVER_IP);
+                ini_table_create_entry_as_int(config, "client", "port", DEFAULT_SERVER_PORT);
                 ini_table_write_to_file(config, buff);
                 ini_table_read_from_file(config, buff);
         }
@@ -118,12 +140,12 @@ void CSettings::LoadSettings(const char *szNickName, int iChatLines)
 	snprintf(m_Settings.szFont, sizeof(m_Settings.szFont), "visby-round-cf-extra-bold.ttf");
 
 	memset(m_Settings.szIp, 0, sizeof(m_Settings.szIp));
-	const char *szIp = ini_table_get_entry(config, "client", "ip");
-	strcpy(m_Settings.szIp, szIp);
+	const char *szIp = IniGet(config, "client", "ip", DEFAULT_SERVER_IP);
+	CopyStr(m_Settings.szIp, sizeof(m_Settings.szIp), szIp);
 
-	m_Settings.port = ini_table_get_entry_as_int(config, "client", "port", 7777);
+	m_Settings.port = ini_table_get_entry_as_int(config, "client", "port", DEFAULT_SERVER_PORT);
 
-	std::string szName = ini_table_get_entry(config, "client", "name");
+	std::string szName = IniGet(config, "client", "name");
 	const char *szPassword = ini_table_get_entry(config, "client", "password");
 	const char *pPassword = ini_table_get_entry(config, "client", "player_password");
 
@@ -139,23 +161,23 @@ void CSettings::LoadSettings(const char *szNickName, int iChatLines)
 	m_Settings.isTestMode = ini_table_get_entry_as_int(config, "client", "test", 0);
 	g_bIsTestMode = (bool)m_Settings.isTestMode;
 
-	std::string szFontName = ini_table_get_entry(config, "gui", "Font");
+	std::string szFontName = IniGet(config, "gui", "Font");
 
 	if(pPassword)
 	{
-		strcpy(m_Settings.player_password, pPassword);
+		CopyStr(m_Settings.player_password, sizeof(m_Settings.player_password), pPassword);
 	}
 	if ( !szName.empty() )
 	{
-		strcpy(m_Settings.szNickName, szName.c_str());
+		CopyStr(m_Settings.szNickName, sizeof(m_Settings.szNickName), szName.c_str());
 	}
 	if (szPassword)
 	{
-		strcpy(m_Settings.szPassword, szPassword);
+		CopyStr(m_Settings.szPassword, sizeof(m_Settings.szPassword), szPassword);
 	}
 	if ( !szFontName.empty() )
 	{
-		strcpy(m_Settings.szFont, szFontName.c_str());
+		CopyStr(m_Settings.szFont, sizeof(m_Settings.szFont), szFontName.c_str());
 	}
 
 	ClearBackslashN(m_Settings.szNickName, sizeof(m_Settings.szNickName));
@@ -165,7 +187,7 @@ void CSettings::LoadSettings(const char *szNickName, int iChatLines)
 
 	if (szNickName)
 	{
-		strcpy(m_Settings.szNickName, tempNick);
+		CopyStr(m_Settings.szNickName, sizeof(m_Settings.szNickName), tempNick);
 	}
 
 	m_Settings.fFontSize = ini_table_get_entry_as_float(config, "gui", "FontSize", 30.0f);
