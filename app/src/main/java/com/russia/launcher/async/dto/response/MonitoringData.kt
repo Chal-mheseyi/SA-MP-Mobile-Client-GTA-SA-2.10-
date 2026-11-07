@@ -26,32 +26,28 @@ object ServersList {
     var news: List<News> = listOf()
     var servers: List<Servers> = listOf()
 
-  fun load(activity: Activity, net: NetworkService, listener: MonitoringDataLoaderListener) {
-    val call = net.monitoringData
+    // Built-in server list (no network). Edit these to change the server.
+    private const val SERVER_NAME = "ONE NATION RP"
+    private const val SERVER_IP = "51.83.49.125"
+    private const val SERVER_PORT = 17045
 
-    call?.enqueue(object : Callback<MonitoringData?> {
-        override fun onResponse(call: Call<MonitoringData?>, response: Response<MonitoringData?>) {
-            android.widget.Toast.makeText(activity, "Monitoring response: code=${response.code()} successful=${response.isSuccessful}", android.widget.Toast.LENGTH_LONG).show()
-            if (response.isSuccessful) {
-                val monitoringData = response.body()
-
-                news = monitoringData?.news!!
-                servers = monitoringData.servers
-
-                saveToFile(activity, monitoringData)
-
-                listener.monitoringDataLoadedSuccess()
-                return
-            }
-            loadFromFile(activity, listener)
-        }
-
-        override fun onFailure(call: Call<MonitoringData?>, t: Throwable) {
-            android.widget.Toast.makeText(activity, "Monitoring load failed: ${t.message}", android.widget.Toast.LENGTH_LONG).show()
-            loadFromFile(activity, listener)
-        }
-    })
-}
+    fun load(activity: Activity, net: NetworkService, listener: MonitoringDataLoaderListener) {
+        news = listOf()
+        servers = listOf(
+            Servers(
+                color = "#2E7DFF",
+                lock = 0,
+                serverID = "0",
+                mult = "",
+                name = SERVER_NAME,
+                online = 0,
+                maxonline = 0,
+                port = SERVER_PORT,
+                ip = SERVER_IP
+            )
+        )
+        listener.monitoringDataLoadedSuccess()
+    }
 
     fun saveToFile(context: Context, data: MonitoringData) {
         try {
