@@ -36,12 +36,23 @@ public class NativeStorage {
             }
 
             Wini w;
-			if (settingsFile.exists()) {
-			    w = new Wini(settingsFile);
-			} else {
-			    w = new Wini();
-			    w.setFile(settingsFile);
-			}
+            if (settingsFile.exists()) {
+                try {
+                    w = new Wini(settingsFile);
+                } catch (IOException e) {
+                    // File is unreadable or broken (for example it was copied or edited with a
+                    // file manager). Remove it and start again with a clean settings.ini.
+                    if (!settingsFile.delete()) {
+                        showMessage("settings.ini is locked. Delete SAMP/settings.ini with your file manager.", context);
+                        return;
+                    }
+                    w = new Wini();
+                    w.setFile(settingsFile);
+                }
+            } else {
+                w = new Wini();
+                w.setFile(settingsFile);
+            }
 			w.put(CLIENT_SECTION_NAME, propertyName, value == null ? "" : value);
 			w.store();
         } catch (InvalidFileFormatException e) {
