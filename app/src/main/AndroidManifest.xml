@@ -45,7 +45,7 @@
         <activity
             android:name="com.russia.launcher.ui.activity.StoryActivity"
             android:exported="false"
-            android:screenOrientation="portrait"
+            android:screenOrientation="sensorLandscape"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"/>
 
         <provider
@@ -71,7 +71,7 @@
         <activity
             android:name="com.russia.launcher.ui.activity.SplashActivity"
             android:exported="true"
-            android:screenOrientation="portrait"
+            android:screenOrientation="sensorLandscape"
             android:theme="@style/AppTheme.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -81,17 +81,17 @@
         <activity
             android:name="com.russia.launcher.ui.activity.MainActivity"
             android:exported="false"
-            android:screenOrientation="portrait"
+            android:screenOrientation="sensorLandscape"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name="com.russia.launcher.ui.activity.LoaderActivity"
-            android:screenOrientation="portrait"
+            android:screenOrientation="sensorLandscape"
             android:launchMode="singleTop"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name="com.russia.launcher.ui.activity.PolicyActivity"
             android:exported="false"
-            android:screenOrientation="portrait"
+            android:screenOrientation="sensorLandscape"
             android:theme="@style/AppTheme.NoActionBar"/>
 
     </application>

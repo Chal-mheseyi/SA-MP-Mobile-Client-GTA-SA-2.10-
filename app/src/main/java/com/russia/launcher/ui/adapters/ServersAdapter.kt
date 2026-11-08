@@ -77,7 +77,7 @@ class ServersAdapter(context: Activity, servers: List<Servers>) : RecyclerView.A
         holder.name.setTextColor(MainColor)
         holder.mult.text = server.mult
         holder.textonline.text = Integer.toString(server.online)
-        holder.textmaxonline.text = "/1200"
+        holder.textmaxonline.text = if (server.maxonline > 0) "/" + server.maxonline else ""
         if (selectedItem == position) {
             holder.container.scaleX = 1.05f
             holder.container.scaleY = 1.05f

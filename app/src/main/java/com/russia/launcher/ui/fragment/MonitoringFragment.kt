@@ -1,6 +1,8 @@
 package com.russia.launcher.ui.fragment
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,6 +26,29 @@ class MonitoringFragment : Fragment() {
     private var recyclerServers: RecyclerView? = null
     private var serversAdapter: ServersAdapter? = null
 
+    // Re-asks the game server for the player count every 15 s while this page is visible
+    private val handler = Handler(Looper.getMainLooper())
+    private val refreshTask = object : Runnable {
+        override fun run() {
+            Thread {
+                ServersList.refreshOnline()
+                handler.post { if (isAdded && view != null) attachServers() }
+            }.start()
+            handler.postDelayed(this, 15000)
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        handler.removeCallbacks(refreshTask)
+        handler.postDelayed(refreshTask, 0)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        handler.removeCallbacks(refreshTask)
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val inflate = inflater.inflate(R.layout.fragment_monitoring, container, false)
         recyclerNews = inflate.findViewById(R.id.newsRV)
@@ -32,6 +57,9 @@ class MonitoringFragment : Fragment() {
         recyclerServers = inflate.findViewById(R.id.ourServersRV)
         recyclerServers?.setHasFixedSize(true) // Используйте ?. для безопасного вызова
         attachNews()
+        // Hide the (empty) Stories block so the servers fit on a landscape screen
+        inflate.findViewById<View>(R.id.newsLL)?.visibility =
+            if (ServersList.news.isEmpty()) View.GONE else View.VISIBLE
         attachServers()
         return inflate
     }
@@ -51,8 +79,8 @@ class MonitoringFragment : Fragment() {
         serversAdapter = ServersAdapter(requireActivity(), ServersList.servers)
         recyclerServers?.adapter = serversAdapter
         if (ServersList.servers.isNotEmpty()) {
-            val players = ServersList.servers[0].onlinePer30Min;
-            userPer30Min?.setText(String.format("%d players", players));
+            val players = ServersList.servers.sumOf { it.online }
+            userPer30Min?.setText(String.format("%d players", players))
         } else {
             userPer30Min?.setText("No player data");
         }

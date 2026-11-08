@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/pt_root_ui_medium"
-        android:text="Мониторинг"
+        android:text="Monitoring"
         android:textColor="@color/white"
         android:textSize="@dimen/_20sdp" />
 
@@ -33,7 +33,7 @@
             android:layout_marginTop="@dimen/_10sdp"
             android:alpha="0.8"
             android:fontFamily="@font/pt_root_ui_bold"
-            android:text="Истории"
+            android:text="Stories"
             android:textColor="@color/white"
             android:textSize="@dimen/_16sdp" />
 
@@ -60,7 +60,7 @@
         android:layout_gravity="center_vertical"
         android:alpha="0.8"
         android:fontFamily="@font/pt_root_ui_bold"
-        android:text="Наши сервера"
+        android:text="Our servers"
         android:textColor="@color/white"
         android:textSize="@dimen/_16sdp" />
 
@@ -88,7 +88,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/ttnorms_extrabold"
-            android:text="513 игроков"
+            android:text="0 players"
             android:textColor="@color/white"
             android:textSize="@dimen/_12sdp"
             app:layout_constraintStart_toStartOf="@+id/textView4"
@@ -100,7 +100,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_7sdp"
             android:fontFamily="@font/visby_cf_bold"
-            android:text="*за последние 30 минут"
+            android:text="*online now"
             android:textColor="#919090"
             android:textSize="@dimen/_7sdp"
             app:layout_constraintBottom_toBottomOf="parent"
