@@ -1,6 +1,8 @@
 #include "../main.h"
 #include "RW/RenderWare.h"
 #include <sstream>
+#include <dirent.h>
+#include <strings.h>
 #include "game.h"
 
 #include "../net/netgame.h"
@@ -44,6 +46,51 @@ struct stFile
 };
 
 char lastFile[123];
+
+// Android file names are case-sensitive. If a game file is not found, look for it again
+// ignoring upper/lower case of every folder and file name below the storage root.
+static bool FindIgnoreCase(const char* root, const char* rel, char* out, size_t outSize)
+{
+	char cur[512];
+	snprintf(cur, sizeof(cur), "%s", root);
+	char part[256];
+	const char* p = rel;
+
+	while (*p)
+	{
+		while (*p == '/') p++;
+		if (!*p) break;
+
+		size_t n = 0;
+		while (p[n] && p[n] != '/') n++;
+		if (n == 0 || n >= sizeof(part)) return false;
+		memcpy(part, p, n);
+		part[n] = 0;
+		p += n;
+
+		DIR* d = opendir(cur);
+		if (!d) return false;
+
+		bool found = false;
+		struct dirent* e;
+		while ((e = readdir(d)) != nullptr)
+		{
+			if (strcasecmp(e->d_name, part) == 0)
+			{
+				size_t len = strlen(cur);
+				snprintf(cur + len, sizeof(cur) - len, "%s%s",
+					(len > 0 && cur[len - 1] == '/') ? "" : "/", e->d_name);
+				found = true;
+				break;
+			}
+		}
+		closedir(d);
+		if (!found) return false;
+	}
+
+	snprintf(out, outSize, "%s", cur);
+	return true;
+}
 
 stFile* NvFOpen(const char* r0, const char* r1, int r2, int r3)
 {
@@ -106,6 +153,16 @@ stFile* NvFOpen(const char* r0, const char* r1, int r2, int r3)
 
 	Log("%s", path);
 	FILE *f  = fopen(path, "rb");
+
+	if (!f && g_pszStorage && !strncmp(path, g_pszStorage, strlen(g_pszStorage)))
+	{
+		char fixedPath[512];
+		if (FindIgnoreCase(g_pszStorage, path + strlen(g_pszStorage), fixedPath, sizeof(fixedPath)))
+		{
+			Log("NVFOpen hook | found with different letter case: %s", fixedPath);
+			f = fopen(fixedPath, "rb");
+		}
+	}
 
 	if(f)
 	{
