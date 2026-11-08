@@ -3,6 +3,9 @@
 #include <sstream>
 #include <dirent.h>
 #include <strings.h>
+#include <errno.h>
+#include <unistd.h>
+#include <sys/stat.h>
 #include "game.h"
 
 #include "../net/netgame.h"
@@ -46,6 +49,24 @@ struct stFile
 };
 
 char lastFile[123];
+
+// Prints WHY a game file could not be opened (error code, owner, permissions, size)
+static void LogOpenFailure(const char* path, int err)
+{
+	struct stat sb;
+	if (stat(path, &sb) == 0)
+	{
+		Log("NVFOpen debug | %s | fopen errno=%d (%s) | file exists: mode=%o owner=%d size=%lld isDir=%d | app uid=%d",
+			path, err, strerror(err), (unsigned)sb.st_mode, (int)sb.st_uid, (long long)sb.st_size,
+			S_ISDIR(sb.st_mode) ? 1 : 0, (int)getuid());
+	}
+	else
+	{
+		int statErr = errno;
+		Log("NVFOpen debug | %s | fopen errno=%d (%s) | stat failed errno=%d (%s) | app uid=%d",
+			path, err, strerror(err), statErr, strerror(statErr), (int)getuid());
+	}
+}
 
 // Android file names are case-sensitive. If a game file is not found, look for it again
 // ignoring upper/lower case of every folder and file name below the storage root.
@@ -153,6 +174,8 @@ stFile* NvFOpen(const char* r0, const char* r1, int r2, int r3)
 
 	Log("%s", path);
 	FILE *f  = fopen(path, "rb");
+	int openErr = errno;
+	if (!f) LogOpenFailure(path, openErr);
 
 	if (!f && g_pszStorage && !strncmp(path, g_pszStorage, strlen(g_pszStorage)))
 	{
@@ -161,6 +184,7 @@ stFile* NvFOpen(const char* r0, const char* r1, int r2, int r3)
 		{
 			Log("NVFOpen hook | found with different letter case: %s", fixedPath);
 			f = fopen(fixedPath, "rb");
+			if (!f) LogOpenFailure(fixedPath, errno);
 		}
 	}
 
