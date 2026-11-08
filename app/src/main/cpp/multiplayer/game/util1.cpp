@@ -2036,16 +2036,27 @@ void CUtil::RenderEntity(CEntity* entity)
 
 RwTexture* CUtil::GetTexture(const char* name)
 {
+    // The placeholder lookup below goes through this same function. Without a limit, a missing
+    // placeholder made it call itself forever (stack overflow). Allow at most 2 nested placeholders.
+    static int fallbackDepth = 0;
+
     auto tex = TextureDatabaseRuntime::GetTexture(name);
     if (!tex)
     {
-#if VER_SAMP
-        tex = LoadTextureFromDB("gta3", "ahoodfence2");
-#else
-        tex = CUtil::LoadTextureFromDB("gta3" , "RepairLR");
-#endif
         Log("WARNING! No tex = %s", name);
+
+        if (fallbackDepth < 2)
+        {
+            fallbackDepth++;
+            // 1st placeholder: SA-MP's own texture. 2nd: one that exists in the original game data.
+            tex = LoadTextureFromDB("gta3", fallbackDepth == 1 ? "ahoodfence2" : "RepairLR");
+            fallbackDepth--;
+        }
     }
+
+    if (!tex)
+        return nullptr;
+
     ++tex->refCount;
 
     return tex;
