@@ -10,6 +10,7 @@ import android.content.pm.PackageManager
 import android.net.ConnectivityManager
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -119,12 +120,37 @@ class SplashActivity : AppCompatActivity() {
 
     }
 
+    // true  = get the game file list from the old server and download/repair missing game files
+    // false = skip the check (use when the game files are already on the phone)
+    private val DOWNLOAD_GAME_FILES = true
+
     private fun loadFilesList() {
-        // No file server: drop any cached list from the old project and skip the check.
-        // Players copy the GTA:SA game files into Android/data/<app>/files/ themselves.
-        deleteFile("last_files.dat")
-        filesListLoaded = true
-        startIfReady()
+        if (!DOWNLOAD_GAME_FILES) {
+            deleteFile("last_files.dat")
+            filesListLoaded = true
+            startIfReady()
+            return
+        }
+        val call = networkService.filesList
+        call?.enqueue(object : Callback<GameFileInfoDto> {
+            override fun onResponse(call: Call<GameFileInfoDto>, response: Response<GameFileInfoDto>) {
+                if (response.isSuccessful && response.body() != null) {
+                    response.body()?.let { CacheChecker.setFilesList(this@SplashActivity, it) }
+                    Toast.makeText(this@SplashActivity, "Game file list received", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(this@SplashActivity, "Game file list failed: HTTP " + response.code(), Toast.LENGTH_LONG).show()
+                }
+                filesListLoaded = true
+                startIfReady()
+            }
+
+            override fun onFailure(call: Call<GameFileInfoDto>, t: Throwable) {
+                Log.d("tag", "onFailure = " + t.message)
+                Toast.makeText(this@SplashActivity, "Game file list failed: " + t.message, Toast.LENGTH_LONG).show()
+                filesListLoaded = true
+                startIfReady()
+            }
+        })
     }
 
     private fun checkPermissions() {
