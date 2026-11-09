@@ -1477,9 +1477,20 @@ void CNetGame::packetAuthKey(Packet *pkt) {
      * This method only works in omp; in samp it can cause problems.
      * The method below works in samp and omp but does not work in ndk 26+
      */
-    auto szAuthKey = findKey(szAuth);
-//    char szAuthKey[260];
-//    gen_auth_key(szAuthKey, szAuth);
+    const char* szAuthKey = findKey(szAuth);
+    char szGeneratedKey[260] = {0};
+    if (!szAuthKey) {
+        // The challenge of this server is not in the table (normal SA-MP servers): calculate the answer.
+        gen_auth_key(szGeneratedKey, szAuth);
+        szAuthKey = szGeneratedKey;
+        Log("Auth key: calculated for challenge %s", szAuth);
+    } else {
+        Log("Auth key: found in table for challenge %s", szAuth);
+    }
+    if (!szAuthKey[0]) {
+        Log("Auth key could not be created, connection stopped");
+        return;
+    }
 
     RakNet::BitStream bsKey;
     uint8_t byteAuthKeyLen = (uint8_t) strlen(szAuthKey);

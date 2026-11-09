@@ -14,15 +14,15 @@
 #define ROTR(value, shift) ((value >> shift) | (value << (sizeof(value)*8 - shift)))
 #define swap(x,y,T) {T tmp = x; x = y; y = tmp;}
 
-void SHA1(char *message, unsigned long *out)
+void SHA1(char *message, uint32_t *out)
 {	
-	unsigned long h0 = 0x67452301;
-	unsigned long h1 = 0xEFCDAB89;
-	unsigned long h2 = 0x98BADCFE;
-	unsigned long h3 = 0x10325476;
-	unsigned long h4 = 0xC3D2E1F0;
+	uint32_t h0 = 0x67452301;
+	uint32_t h1 = 0xEFCDAB89;
+	uint32_t h2 = 0x98BADCFE;
+	uint32_t h3 = 0x10325476;
+	uint32_t h4 = 0xC3D2E1F0;
 
-	unsigned long len = 0;
+	uint32_t len = 0;
 	unsigned long long bitlen = 0;
 	
 	while (message[len])
@@ -31,8 +31,8 @@ void SHA1(char *message, unsigned long *out)
 		bitlen += 8;
 	}
 	
-	unsigned long complement = (55 - (len%56)) + 8*(((len+8)/64));
-	unsigned long newlen = len + complement + 8 + 1;
+	uint32_t complement = (55 - (len%56)) + 8*(((len+8)/64));
+	uint32_t newlen = len + complement + 8 + 1;
 	char *pMessage = new char[newlen];
 	if (!pMessage)
 		return;
@@ -43,29 +43,29 @@ void SHA1(char *message, unsigned long *out)
 
 	*(unsigned long long*)&pMessage[len + 1 + complement] = endian_swap64(bitlen);
 
-	unsigned long chunks = newlen/64;
-	unsigned long w[80];
+	uint32_t chunks = newlen/64;
+	uint32_t w[80];
 
-	for (unsigned long x = 0; x < chunks; x++)
+	for (uint32_t x = 0; x < chunks; x++)
 	{
-		for (unsigned long i = 0; i < 16; i++)
-			w[i] = endian_swap32(*(unsigned long*)(&pMessage[x*64 + i*4]));
+		for (uint32_t i = 0; i < 16; i++)
+			w[i] = endian_swap32(*(uint32_t*)(&pMessage[x*64 + i*4]));
 
 		memset(&w[16], 0, 64*4);
 
-		for (unsigned long i = 16; i <= 79; i++)
+		for (uint32_t i = 16; i <= 79; i++)
 			w[i] = ROTL((w[i-3] ^ w[i-8] ^ w[i-14] ^ w[i-16]), 1);
 
-		unsigned long a = h0;
-		unsigned long b = h1;
-		unsigned long c = h2;
-		unsigned long d = h3;
-		unsigned long e = h4;
+		uint32_t a = h0;
+		uint32_t b = h1;
+		uint32_t c = h2;
+		uint32_t d = h3;
+		uint32_t e = h4;
 
-		for (unsigned long i = 0; i <= 79; i++)
+		for (uint32_t i = 0; i <= 79; i++)
 		{
-			unsigned long f;
-			unsigned long k;
+			uint32_t f;
+			uint32_t k;
 
 			if (0 <= i && i <= 19)
 			{
@@ -88,7 +88,7 @@ void SHA1(char *message, unsigned long *out)
 				k = 0xCA62C1D6;
 			}
 
-			unsigned long temp = (ROTL(a, 5) + f + e + k + w[i])&0xFFFFFFFF;
+			uint32_t temp = (ROTL(a, 5) + f + e + k + w[i])&0xFFFFFFFF;
 			e = d;
 			d = c;
 			c = ROTL(b, 30);
@@ -115,7 +115,7 @@ void SHA1(char *message, unsigned long *out)
 void SHA1(char *message, char buf[64])
 {
 	if (!buf) return;
-	unsigned long out[5];
+	uint32_t out[5];
 	SHA1(message, out);
 	sprintf(buf, "%.8X%.8X%.8X%.8X%.8X", out[0], out[1], out[2], out[3], out[4]);
 }
@@ -197,7 +197,7 @@ void gen_auth_key(char* buf, char* auth_in)
 	if(!auth_in) return;
 	sprintf(message, "%s", auth_in);
 
-	unsigned long out[5];
+	uint32_t out[5];
 	uint8_t *pb_out = (uint8_t*)&out;
 
 	SHA1(message, out);
