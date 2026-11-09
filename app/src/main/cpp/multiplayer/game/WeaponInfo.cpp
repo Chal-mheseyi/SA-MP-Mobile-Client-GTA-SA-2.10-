@@ -49,6 +49,10 @@ void CWeaponInfo::LoadWeaponData() {
     Log("Loading weapon.dat..");
 
     auto f = CFileMgr::OpenFile("DATA\\WEAPON.DAT", "rb");
+    if (!f) {
+        Log("weapon.dat could not be opened, weapon data skipped");
+        return;
+    }
     for (auto line = CFileLoader::LoadLine(f); line; line = CFileLoader::LoadLine(f)) {
         std::string_view sv(line);
         if (sv.find("ENDWEAPONDATA") != std::string_view::npos) {
