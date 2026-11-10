@@ -188,10 +188,41 @@ void CNetGame::Process() {
 
 }
 
+static const char* PacketName(int id)
+{
+    switch (id) {
+        case ID_AUTH_KEY: return "AUTH_KEY";
+        case ID_CONNECTION_ATTEMPT_FAILED: return "CONNECTION_ATTEMPT_FAILED";
+        case ID_NO_FREE_INCOMING_CONNECTIONS: return "NO_FREE_INCOMING_CONNECTIONS";
+        case ID_DISCONNECTION_NOTIFICATION: return "DISCONNECTION_NOTIFICATION";
+        case ID_CONNECTION_LOST: return "CONNECTION_LOST";
+        case ID_CONNECTION_REQUEST_ACCEPTED: return "CONNECTION_REQUEST_ACCEPTED";
+        case ID_FAILED_INITIALIZE_ENCRIPTION: return "FAILED_INITIALIZE_ENCRYPTION";
+        case ID_CONNECTION_BANNED: return "CONNECTION_BANNED";
+        case ID_INVALID_PASSWORD: return "INVALID_PASSWORD";
+        case ID_CUSTOM_RPC: return "CUSTOM_RPC";
+        default: return "other";
+    }
+}
+
 void CNetGame::UpdateNetwork()
 {
     while (auto pkt = m_pRakClient->Receive())
     {
+        {
+            // Debug: log every packet except the per-frame sync ones (first 300 only)
+            int pid = GetPacketID(pkt);
+            if (pid != ID_PLAYER_SYNC && pid != ID_VEHICLE_SYNC && pid != ID_AIM_SYNC &&
+                pid != ID_BULLET_SYNC && pid != ID_MARKERS_SYNC && pid != ID_TRAILER_SYNC &&
+                pid != ID_PASSENGER_SYNC && pid != ID_VOICE) {
+                static int netLogCount = 0;
+                if (netLogCount < 300) {
+                    netLogCount++;
+                    Log("Net packet: id=%d (%s) length=%d", pid, PacketName(pid), (int) pkt->length);
+                }
+            }
+        }
+
         switch (GetPacketID(pkt)) {
             case ID_AUTH_KEY:
                 packetAuthKey(pkt);
